@@ -1,0 +1,12 @@
+{
+  "private": "true",
+  "type": "module",
+  "name": "mememaker",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "dotnet tools/server.cs ../app/"
+  },
+  "devDependencies": {
+    "tsdown": "^0.22.3"
+  }
+}

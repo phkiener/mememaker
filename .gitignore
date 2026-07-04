@@ -1,2 +1,7 @@
-# IDE files
+# IDE & user files
 .idea/
+*.user
+
+# Build files
+node_modules/
+app/js/

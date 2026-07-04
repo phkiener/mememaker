@@ -4,6 +4,7 @@
   "name": "mememaker",
   "scripts": {
     "build": "node build.js",
+    "watch": "node build.js --watch",
     "serve": "dotnet tools/server.cs ../app/"
   },
   "devDependencies": {

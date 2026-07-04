@@ -1,14 +1,28 @@
 import { build } from "tsdown";
+import * as fs from "node:fs";
 
-await build({
-    entry: ["src/app.ts"],
+if (process.argv.includes("--watch")) {
+    let buildDelay;
 
-    format: "module",
-    outDir: "app/js",
-    platform: "browser",
+    fs.watch("src/", { recursive: true, }, () => {
+        clearTimeout(buildDelay);
+        buildDelay = setTimeout(runBuild, 250);
+    });
+} else {
+    await runBuild();
+}
 
-    failOnWarn: true,
-    sourcemap: true,
-    minify: true,
-    clean: true,
-});
+async function runBuild() {
+    await build({
+        entry: ["src/app.ts"],
+
+        format: "module",
+        outDir: "app/js",
+        platform: "browser",
+
+        failOnWarn: true,
+        sourcemap: true,
+        minify: true,
+        clean: true,
+    });
+}

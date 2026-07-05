@@ -6,6 +6,7 @@ export class Caption implements Controller {
     private canvas: HTMLElement;
     private controls: HTMLElement;
     private template: template;
+    private exportDialog: HTMLDialogElement;
 
     constructor(id: string) {
         this.id = id;
@@ -13,7 +14,8 @@ export class Caption implements Controller {
 
     async init(document: Document): Promise<void> {
         this.canvas = document.querySelector("main > svg");
-        this.controls = document.querySelector("main > .controls");
+        this.controls = document.querySelector("main .captions");
+        this.exportDialog = document.querySelector("#export-dialog");
         this.template = await getTemplate(this.id);
 
         document.querySelector<HTMLHeadingElement>("main > h2").innerText = this.template.title;
@@ -67,10 +69,33 @@ export class Caption implements Controller {
 
             input.addEventListener("input", () => text.innerHTML = input.value);
 
-
-
             this.controls.appendChild(input);
         }
+
+        this.exportDialog.addEventListener("beforetoggle", evt => {
+            if (evt.newState === "open") {
+
+                this.exportDialog.style.width = this.canvas.clientWidth + "px";
+                this.exportDialog.style.height = this.canvas.clientHeight + "px";
+                this.exportDialog.style.overflow = "hidden";
+
+                const image = document.createElement("img");
+                image.addEventListener("load", () => {
+                    const canvas = this.exportDialog.querySelector("canvas");
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+                    ctx.drawImage(image, 0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+                }, { once: true });
+
+                const exported = new XMLSerializer().serializeToString(this.canvas);
+                const svgBlob = new Blob([exported], { type: "image/svg+xml;charset=utf-8" });
+                const url = URL.createObjectURL(svgBlob);
+                image.src = url;
+
+                image.addEventListener("load", () => URL.revokeObjectURL(url), { once: true });
+           }
+        });
 
         return;
     }

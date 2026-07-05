@@ -2,8 +2,16 @@
   "templates": [
     {
       "id": "462f1c50-2bdf-4336-90b2-2e8a02f12712",
-      "title": "Train hitting School Bus",
+      "title": "Train Hitting School Bus",
       "image": "a-train-hitting-a-school-bus.png",
+      "texts": [
+
+      ]
+    },
+    {
+      "id": "a7d60759-54ed-425e-95c8-63440fa67d15",
+      "title": "Mother Ignoring Kid Drowning in Pool",
+      "image": "mother-ignoring-kid-drowning-in-a-pool.jpg",
       "texts": [
 
       ]

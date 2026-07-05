@@ -1,4 +1,5 @@
 import { Controller } from "../controller";
+import { getAllTemplates } from "../domain/templates";
 
 type template = {
     id: string;
@@ -18,11 +19,7 @@ export class Index implements Controller {
         this.cardContainer = document.getElementById("meme-container") as HTMLDivElement;
         this.cardContainerTitle = this.cardContainer.querySelector("h2");
 
-        const data = await fetch("/data/templates.json");
-        if (data.ok) {
-            const response = await data.json();
-            this.templates = response.templates;
-        }
+        this.templates = await getAllTemplates();
 
         this.cardContainerTitle.innerText = this.templates.length === 1
             ? "1 template"

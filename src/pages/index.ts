@@ -39,7 +39,7 @@ export class Index implements Controller {
             caption.innerText = template.title;
 
             const link = templateInstance.querySelector("a");
-            link.href = `/caption/${template.id}`;
+            link.href = `/caption?id=${template.id}`;
 
             this.cardContainer.appendChild(templateInstance);
         }

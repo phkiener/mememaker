@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="/css/root.css" />
     <link rel="preload" as="json" href="/data/templates.json" />
-    <link rel="preload" as="script" href="/js/app.js" />
 </head>
 
 <body>
@@ -20,6 +19,27 @@
     <h2>#</h2>
 
     <svg>
+        <style>
+            text {
+                font-family: Impact, sans-serif;
+                text-transform: uppercase;
+
+                fill: white;
+                stroke: black;
+                stroke-width: 2px;
+
+                font-size: 36px;
+
+                user-select: none;
+            }
+
+            svg:hover text {
+                outline: 2px solid black;
+                outline-offset: 1px;
+
+                cursor: move;
+            }
+        </style>
 
     </svg>
     <section class="controls">

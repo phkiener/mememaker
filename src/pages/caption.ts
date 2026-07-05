@@ -1,11 +1,5 @@
 import { Controller } from "../controller";
-import { getTemplate } from "../domain/templates";
-
-type template = {
-    id: string;
-    title: string;
-    image: string;
-}
+import { template, getTemplate } from "../domain/templates";
 
 export class Caption implements Controller {
     private readonly id: string;
@@ -25,22 +19,58 @@ export class Caption implements Controller {
         document.querySelector<HTMLHeadingElement>("main > h2").innerText = this.template.title;
 
         const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
-        image.setAttribute("x", "0");
-        image.setAttribute("y", "0");
-        image.setAttribute("href", `/assets/${this.template.image}`);
-        image.onload = () => {
-
+        image.addEventListener("load", () => {
             const boundingBox = image.getBBox();
             const heightFactor = boundingBox.height / boundingBox.width;
             const sizedHeight = this.canvas.clientWidth * heightFactor;
 
             this.canvas.setAttribute("height", `${sizedHeight}px`);
-            image.setAttribute("preserveAspectRatio", "meet");
+            this.canvas.setAttribute("viewbox", `0 0 ${boundingBox.width} ${boundingBox.height}`);
             image.setAttribute("width", "100%");
             image.setAttribute("height", "100%");
-        }
+        }, { once: true });
 
+        image.setAttribute("x", "0");
+        image.setAttribute("y", "0");
+        image.setAttribute("href", `/assets/${this.template.image}`);
         this.canvas.appendChild(image);
+
+        for (const textField of this.template.texts) {
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", `${textField.x}`);
+            text.setAttribute("y", `${textField.y}`);
+
+            let dragging = false;
+            text.addEventListener("mousedown", () => dragging = true);
+            text.addEventListener("mouseup", () => dragging = false);
+            text.addEventListener("mousemove", evt => {
+                if (!dragging) {
+                    return;
+                }
+
+                const currentX = Number.parseFloat(text.getAttribute("x"));
+                const currentY = Number.parseFloat(text.getAttribute("y"));
+
+                const newX = currentX + evt.movementX;
+                const newY = currentY + evt.movementY;
+
+                text.setAttribute("x", `${newX}`);
+                text.setAttribute("y", `${newY}`);
+            }, { passive: true });
+
+            text.innerHTML = "Hello World";
+            this.canvas.appendChild(text);
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = text.innerHTML;
+
+            input.addEventListener("input", () => text.innerHTML = input.value);
+
+
+
+            this.controls.appendChild(input);
+        }
 
         return;
     }

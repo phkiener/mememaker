@@ -2,6 +2,12 @@ export type template = {
     id: string;
     title: string;
     image: string;
+    texts: templateCaption[]
+}
+
+export type templateCaption = {
+    x: number;
+    y: number;
 }
 
 let cachedData: template[] = [];

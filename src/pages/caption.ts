@@ -29,6 +29,7 @@ export class Caption implements Controller {
             const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
             text.setAttribute("x", `${textField.x}`);
             text.setAttribute("y", `${textField.y}`);
+            text.setAttribute("text-anchor", "middle");
 
             let dragging = false;
 
@@ -56,6 +57,7 @@ export class Caption implements Controller {
             const input = document.createElement("input");
             input.type = "text";
             input.value = text.innerHTML;
+            input.placeholder = textField.label;
 
             input.addEventListener("input", () => text.innerHTML = input.value);
 

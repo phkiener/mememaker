@@ -14,8 +14,19 @@
       "image": "/assets/templates/mother-ignoring-kid-drowning-in-a-pool.jpg",
       "texts": [
         {
-          "x": 0,
-          "y": 36
+          "label": "lifted-child",
+          "x": 180,
+          "y": 64
+        },
+        {
+          "label": "drowning-child",
+          "x": 75,
+          "y": 153
+        },
+        {
+          "label": "skeleton",
+          "x": 197,
+          "y": 316
         }
       ]
     }

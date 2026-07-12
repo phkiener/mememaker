@@ -6,6 +6,7 @@ export type template = {
 }
 
 export type templateCaption = {
+    label: string;
     x: number;
     y: number;
 }

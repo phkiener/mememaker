@@ -4,6 +4,7 @@ import { template, getTemplate } from "../domain/templates";
 export class Caption implements Controller {
     private readonly id: string;
     private canvas: HTMLElement;
+    private image: HTMLImageElement;
     private controls: HTMLElement;
     private template: template;
     private exportDialog: HTMLDialogElement;
@@ -13,30 +14,16 @@ export class Caption implements Controller {
     }
 
     async init(document: Document): Promise<void> {
-        this.canvas = document.querySelector("main > svg");
+        this.canvas = document.querySelector("main svg");
+        this.image = document.querySelector("main img");
         this.controls = document.querySelector("main .captions");
         this.exportDialog = document.querySelector("#export-dialog");
         this.template = await getTemplate(this.id);
 
         document.querySelector<HTMLHeadingElement>("main > h2").innerText = this.template.title;
 
-        const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
-        image.addEventListener("load", () => {
-            const boundingBox = image.getBBox();
-            const heightFactor = boundingBox.height / boundingBox.width;
-            const sizedHeight = this.canvas.clientWidth * heightFactor;
 
-            this.canvas.setAttribute("height", `${sizedHeight}px`);
-            this.canvas.setAttribute("viewbox", `0 0 ${boundingBox.width} ${boundingBox.height}`);
-            image.setAttribute("width", "100%");
-            image.setAttribute("height", "100%");
-        }, { once: true });
-
-        image.setAttribute("x", "0");
-        image.setAttribute("y", "0");
-        image.setAttribute("href", this.template.image);
-
-        this.canvas.appendChild(image);
+        this.image.src = this.template.image;
 
         for (const textField of this.template.texts) {
             const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -45,7 +32,7 @@ export class Caption implements Controller {
 
             let dragging = false;
 
-            image.addEventListener("mouseout", () => dragging = false);
+            this.canvas.addEventListener("mouseout", () => dragging = false);
             text.addEventListener("mousedown", () => dragging = true);
             text.addEventListener("mouseup", () => dragging = false);
             text.addEventListener("mousemove", evt => {
@@ -78,16 +65,20 @@ export class Caption implements Controller {
         this.exportDialog.addEventListener("beforetoggle", evt => {
             if (evt.newState === "open") {
 
-                this.exportDialog.style.width = this.canvas.clientWidth + "px";
-                this.exportDialog.style.height = this.canvas.clientHeight + "px";
+                this.exportDialog.style.width = this.image.clientWidth + "px";
+                this.exportDialog.style.height = this.image.clientHeight + "px";
                 this.exportDialog.style.overflow = "hidden";
 
                 const image = document.createElement("img");
                 image.addEventListener("load", () => {
                     const canvas = this.exportDialog.querySelector("canvas");
+                    canvas.width = this.image.clientWidth;
+                    canvas.height = this.image.clientHeight;
+
                     const ctx = canvas.getContext("2d");
 
                     ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+                    ctx.drawImage(this.image, 0, 0, this.image.clientWidth, this.image.clientHeight);
                     ctx.drawImage(image, 0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
                 }, { once: true });
 

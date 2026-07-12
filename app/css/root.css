@@ -51,3 +51,25 @@
         justify-content: center;
     }
 }
+
+#caption-container .image {
+    display: grid;
+    grid-template-columns: clamp(120px, max-content, 400px);
+    grid-template-rows: max-content;
+
+    & > * {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+    }
+
+    & > img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    & > svg {
+        align-self: stretch;
+        justify-self: stretch;
+    }
+}

@@ -8,6 +8,7 @@
     "serve": "dotnet miniserv app/"
   },
   "devDependencies": {
+    "lightningcss": "^1.32.0",
     "tsdown": "^0.22.3"
   }
 }

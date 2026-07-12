@@ -66,11 +66,6 @@ export class Caption implements Controller {
 
         this.exportDialog.addEventListener("beforetoggle", evt => {
             if (evt.newState === "open") {
-
-                this.exportDialog.style.width = this.image.clientWidth + "px";
-                this.exportDialog.style.height = this.image.clientHeight + "px";
-                this.exportDialog.style.overflow = "hidden";
-
                 const image = document.createElement("img");
                 image.addEventListener("load", () => {
                     const canvas = this.exportDialog.querySelector("canvas");

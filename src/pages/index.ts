@@ -29,7 +29,7 @@ export class Index implements Controller {
             const templateInstance = document.importNode(this.cardTemplate.content, true);
 
             const image = templateInstance.querySelector("img");
-            image.src = `/assets/${template.image}`;
+            image.src = template.image;
             image.alt = template.title;
 
             const caption = templateInstance.querySelector("figcaption");

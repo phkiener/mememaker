@@ -34,7 +34,8 @@ export class Caption implements Controller {
 
         image.setAttribute("x", "0");
         image.setAttribute("y", "0");
-        image.setAttribute("href", `/assets/${this.template.image}`);
+        image.setAttribute("href", this.template.image);
+
         this.canvas.appendChild(image);
 
         for (const textField of this.template.texts) {
@@ -43,6 +44,8 @@ export class Caption implements Controller {
             text.setAttribute("y", `${textField.y}`);
 
             let dragging = false;
+
+            image.addEventListener("mouseout", () => dragging = false);
             text.addEventListener("mousedown", () => dragging = true);
             text.addEventListener("mouseup", () => dragging = false);
             text.addEventListener("mousemove", evt => {

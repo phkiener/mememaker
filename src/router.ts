@@ -10,7 +10,7 @@ export function resolveController(path: string, query: string): Controller | nul
         return new IndexController();
     }
 
-    if (path === "caption/") {
+    if (path === "caption/" || path === "caption") {
         return new CaptionController(parsedQuery.get("id")!);
     }
 

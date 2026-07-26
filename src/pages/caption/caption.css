@@ -1,0 +1,40 @@
+#caption-container {
+    max-width: 120ch;
+    margin: 0 auto;
+
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 1lh;
+    grid-column-gap: 4ch;
+
+    grid-template-rows: max-content;
+    grid-auto-rows: 450px;
+
+    grid-template-columns: repeat(auto-fill, 350px);
+
+    h2 {
+        grid-column: 1 / -1;
+    }
+}
+
+#caption-container .image {
+    display: grid;
+    grid-template-columns: clamp(120px, max-content, 400px);
+    grid-template-rows: max-content;
+
+    & > * {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+    }
+
+    & > img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    & > svg {
+        align-self: stretch;
+        justify-self: stretch;
+    }
+}

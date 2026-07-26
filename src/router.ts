@@ -1,5 +1,5 @@
 import { Index } from "./pages/index";
-import { Caption } from "./pages/caption";
+import { Caption } from "./pages/caption/caption";
 
 import { Controller } from "./controller";
 

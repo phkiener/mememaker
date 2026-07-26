@@ -1,9 +1,10 @@
 import typescript from "./build/compileTypescript";
 import styles from "./build/bundleStylesheets";
 import assets from "./build/copyAssets";
+import pages from "./build/renderPages";
 import * as fs from "node:fs";
 
-const targets = [typescript, styles, assets];
+const targets = [typescript, styles, assets, pages];
 const incrementalBuildDelay = 2000;
 
 for (const target of targets) {

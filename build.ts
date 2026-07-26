@@ -3,13 +3,18 @@ import styles from "./build/bundleStylesheets";
 import assets from "./build/copyAssets";
 import pages from "./build/renderPages";
 import * as fs from "node:fs";
+import { Target } from "./build/target";
 
-const targets = [typescript, styles, assets, pages];
+const targets: Target[] = [typescript, styles, assets, pages];
 const incrementalBuildDelay = 2000;
 
 for (const target of targets) {
+    process.stdout.write(`${target.name}...`);
     await target.build();
+    process.stdout.write(` success!\n`);
 }
+
+process.stdout.write("\n");
 
 if (process.argv.includes("--watch")) {
     let buildTimer: NodeJS.Timeout;
@@ -18,16 +23,16 @@ if (process.argv.includes("--watch")) {
         clearTimeout(buildTimer);
         buildTimer = setTimeout(async () => {
             for (const target of targets) {
+                process.stdout.write(`${target.name}...`);
                 try {
-                    if (target.kind === "incremental") {
-                        await target.incrementalBuild();
-                    } else {
-                        await target.build();
-                    }
+                    await (target.incrementalBuild ?? target.build)();
+                    process.stdout.write(` success!\n`);
                 } catch (e) {
-                    console.error(`Incremental build for ${target.name} failed: `, e);
+                    process.stdout.write(` failed: ${e}\n`);
                 }
             }
+
+            process.stdout.write("\n");
         }, incrementalBuildDelay);
     });
 }

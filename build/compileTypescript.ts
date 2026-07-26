@@ -1,5 +1,5 @@
 import { build, InlineConfig } from "tsdown";
-import { IncrementalTarget } from "./target";
+import { Target } from "./target";
 
 const config: InlineConfig = {
     entry: ["src/app.ts"],
@@ -7,12 +7,13 @@ const config: InlineConfig = {
     format: "module",
     outDir: "app/",
     platform: "browser",
+    logLevel: "silent",
 
     sourcemap: true,
     minify: true,
 };
 
-const target: IncrementalTarget = {
+const target: Target = {
     name: "compile typescript",
     build: async () => {
         await build(Object.assign({ clean: true, failOnWarn: true }, config));

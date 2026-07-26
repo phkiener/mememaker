@@ -1,6 +1,6 @@
 import { bundleAsync } from "lightningcss";
-import { Target } from "./target";
 import * as fs from "node:fs/promises";
+import { Target } from "./target";
 
 const config: InlineConfig = {
     filename: "src/app.css",

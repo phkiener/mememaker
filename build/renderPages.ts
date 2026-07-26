@@ -1,6 +1,7 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import { Eta } from "eta";
+import { Target } from "./target";
 
 const eta = new Eta( { views: "src/pages" });
 

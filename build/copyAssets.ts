@@ -1,4 +1,5 @@
 import * as fs from "node:fs/promises";
+import { Target } from "./target";
 
 const target: Target = {
     name: "copy assets",

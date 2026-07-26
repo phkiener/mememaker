@@ -1,6 +1,6 @@
 <% layout("../_layout", { title: "Mememaker" }) %>
 
-<section class="card">
+<section class="card fixed">
     <a class="small" href="">Back to templates</a>
     <h2>#</h2>
 </section>

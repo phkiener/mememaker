@@ -22,47 +22,63 @@ export class CaptionController implements Controller {
 
         document.querySelector<HTMLHeadingElement>("main h2")!.innerText = this.template.title;
 
+        this.image.addEventListener("load", () => {
+            for (const textField of this.template.texts) {
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute("x", `${textField.x * 100}%`);
+                text.setAttribute("y", `${textField.y * 100}%`);
+                text.setAttribute("text-anchor", "middle");
+                text.innerHTML = textField.content;
+
+                let dragging = false;
+
+                this.canvas.addEventListener("mouseout", () => dragging = false);
+                text.addEventListener("mousedown", () => dragging = true);
+                text.addEventListener("mouseup", () => dragging = false);
+                text.addEventListener("mousemove", evt => {
+                    if (!dragging) {
+                        return;
+                    }
+
+                    const currentX = text.getAttribute("x")!;
+                    let currentXAbsolute = 0;
+                    if (currentX.endsWith("%")) {
+                        const currentXPercentage = Number.parseFloat(currentX.slice(0, currentX.length - 1)) / 100;
+                        currentXAbsolute = this.canvas.clientWidth * currentXPercentage;
+                    } else {
+                        currentXAbsolute = Number.parseFloat(currentX);
+                    }
+
+                    const currentY = text.getAttribute("y")!;
+                    let currentYAbsolute = 0;
+                    if (currentX.endsWith("%")) {
+                        const currentYPercentage = Number.parseFloat(currentY.slice(0, currentX.length - 1)) / 100;
+                        currentYAbsolute = this.canvas.clientHeight * currentYPercentage;
+                    } else {
+                        currentYAbsolute = Number.parseFloat(currentY);
+                    }
+
+                    const newX = currentXAbsolute + evt.movementX;
+                    const newY = currentYAbsolute + evt.movementY;
+
+                    text.setAttribute("x", `${newX / this.canvas.clientWidth * 100}%`);
+                    text.setAttribute("y", `${newY / this.canvas.clientHeight * 100}%`);
+                }, { passive: true });
+
+                this.canvas.appendChild(text);
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.value = text.innerHTML;
+                input.placeholder = textField.label;
+
+                input.addEventListener("input", () => text.innerHTML = input.value);
+
+                this.controls.appendChild(input);
+            }
+        });
+
         this.image.src = this.template.image;
-
-        for (const textField of this.template.texts) {
-            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            text.setAttribute("x", `${textField.x}`);
-            text.setAttribute("y", `${textField.y}`);
-            text.setAttribute("text-anchor", "middle");
-            text.innerHTML = textField.content;
-
-            let dragging = false;
-
-            this.canvas.addEventListener("mouseout", () => dragging = false);
-            text.addEventListener("mousedown", () => dragging = true);
-            text.addEventListener("mouseup", () => dragging = false);
-            text.addEventListener("mousemove", evt => {
-                if (!dragging) {
-                    return;
-                }
-
-                const currentX = Number.parseFloat(text.getAttribute("x")!);
-                const currentY = Number.parseFloat(text.getAttribute("y")!);
-
-                const newX = currentX + evt.movementX;
-                const newY = currentY + evt.movementY;
-
-                text.setAttribute("x", `${newX}`);
-                text.setAttribute("y", `${newY}`);
-            }, { passive: true });
-
-            this.canvas.appendChild(text);
-
-            const input = document.createElement("input");
-            input.type = "text";
-            input.value = text.innerHTML;
-            input.placeholder = textField.label;
-
-            input.addEventListener("input", () => text.innerHTML = input.value);
-
-            this.controls.appendChild(input);
-        }
-
         this.exportDialog.addEventListener("beforetoggle", evt => {
             if (evt.newState === "open") {
                 const image = document.createElement("img");

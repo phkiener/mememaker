@@ -2,15 +2,14 @@
     align-self: stretch;
 
     display: grid;
-    grid-template-rows: max-content;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     grid-row-gap: 1lh;
     grid-column-gap: 4ch;
 
     .image {
         display: grid;
-        grid-template-columns: clamp(120px, max-content, 400px);
-        grid-template-rows: max-content;
+        min-height: 0;
 
         & > * {
             grid-column: 1 / -1;
@@ -18,7 +17,10 @@
         }
 
         & > img {
+            min-width: 0;
             max-width: 100%;
+
+            min-height: 0;
             max-height: 100%;
             object-fit: contain;
         }
@@ -50,6 +52,24 @@
 
         .actions {
             align-self: flex-end;
+        }
+    }
+}
+
+@media (aspect-ratio > 1/1) {
+    #caption-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+}
+
+@media (aspect-ratio < 1/1) {
+    #caption-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr max-content;
+
+        & .image {
+            place-self: stretch center;
         }
     }
 }

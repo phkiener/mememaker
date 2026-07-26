@@ -80,11 +80,18 @@ button {
     align-items: flex-start;
     justify-content: flex-start;
 
+    flex: 1 1 auto;
+
+    &.fixed {
+        flex: 1 0 max-content;
+    }
+
     & > .small {
         margin-block: 0.1lh;
     }
 
     & > * {
+        min-height: 0;
         margin-block: 0.25lh;
     }
 }

@@ -3,11 +3,11 @@ import { CaptionController } from "./pages/caption/captionController";
 
 import { Controller } from "./controller";
 
-export function resolveController(location: Location): Controller {
-    const query = new URLSearchParams(location.search);
+export function resolveController(path: string, query: string): Controller {
+    const parsedQuery = new URLSearchParams(query);
 
-    if (location.pathname === "/caption") {
-        return new CaptionController(query.get("id")!);
+    if (path === "caption") {
+        return new CaptionController(parsedQuery.get("id")!);
     }
 
     return new IndexController();

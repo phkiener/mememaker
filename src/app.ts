@@ -1,4 +1,7 @@
 import { resolveController } from "./router";
 
-const controller = resolveController(window.location);
+const base = new URL(document.baseURI);
+const path = window.location.pathname.replace(base.pathname, "");
+
+const controller = resolveController(path, window.location.search);
 await controller.init(document);

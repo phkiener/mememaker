@@ -8,16 +8,16 @@ type template = {
 }
 
 export class IndexController implements Controller {
-    private cardTemplate: HTMLTemplateElement;
-    private cardContainer: HTMLDivElement;
-    private cardContainerTitle: HTMLHeadingElement;
+    private cardTemplate!: HTMLTemplateElement;
+    private cardContainer!: HTMLDivElement;
+    private cardContainerTitle!: HTMLHeadingElement;
 
     private templates: template[] = [];
 
     async init(document: Document): Promise<void> {
-        this.cardTemplate = document.getElementById("meme-card") as HTMLTemplateElement;
-        this.cardContainer = document.getElementById("meme-container") as HTMLDivElement;
-        this.cardContainerTitle = this.cardContainer.querySelector("h2");
+        this.cardTemplate = document.querySelector("main template#meme-card") as HTMLTemplateElement;
+        this.cardContainer = document.querySelector("main #meme-grid") as HTMLDivElement;
+        this.cardContainerTitle = document.querySelector("main h2") as HTMLHeadingElement;
 
         this.templates = await getAllTemplates();
 
@@ -28,14 +28,14 @@ export class IndexController implements Controller {
         for (const template of this.templates) {
             const templateInstance = document.importNode(this.cardTemplate.content, true);
 
-            const image = templateInstance.querySelector("img");
+            const image = templateInstance.querySelector("img")!;
             image.src = template.image;
             image.alt = template.title;
 
-            const caption = templateInstance.querySelector("figcaption");
+            const caption = templateInstance.querySelector("figcaption")!;
             caption.innerText = template.title;
 
-            const link = templateInstance.querySelector("a");
+            const link = templateInstance.querySelector("a")!;
             link.href = `caption?id=${template.id}`;
 
             this.cardContainer.appendChild(templateInstance);

@@ -1,7 +1,4 @@
-#meme-container {
-    max-width: 120ch;
-    margin: 0 auto;
-
+#meme-grid {
     display: grid;
     grid-auto-flow: row;
     grid-row-gap: 1lh;
@@ -12,42 +9,36 @@
 
     grid-template-columns: repeat(auto-fill, 350px);
 
-    h2 {
-        grid-column: 1 / -1;
-    }
-}
-
-@scope (.meme-card) {
-    & {
+    .meme-card {
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: space-between;
-    }
 
-    & figure {
-        margin: 0;
-        flex: 1 1 max-content;
+        & > figure {
+            margin: 0;
+            flex: 1 1 max-content;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-    }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
 
-    & img {
-        max-width: 100%;
-        max-height: 100%;
+            & > img {
+                max-width: 100%;
+                max-height: 100%;
 
-        object-fit: contain;
-    }
+                object-fit: contain;
+            }
+        }
 
-    & footer {
-        flex: 0 0 max-content;
+        & > footer {
+            flex: 0 0 max-content;
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }

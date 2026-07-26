@@ -1,15 +1,9 @@
 <% layout("../_layout", { title: "Mememaker" }) %>
 
-<header>
-    <h1>Mememaker</h1>
-</header>
-
-<main id="caption-container">
-    <h2>#</h2>
-
+<h2>#</h2>
+<section id="caption-container">
     <section class="image">
         <img src="" alt="" />
-
         <svg>
             <style>
                 text {
@@ -34,14 +28,14 @@
             </style>
         </svg>
     </section>
-
     <section>
         <div class="captions"></div>
         <div>
             <button type="button" command="show-modal" commandfor="export-dialog">Export</button>
         </div>
     </section>
-</main>
+</section>
+
 
 <dialog id="export-dialog">
     <canvas></canvas>
@@ -49,7 +43,3 @@
         <button type="button" command="close" commandfor="export-dialog">Close</button>
     </div>
 </dialog>
-
-<footer>
-
-</footer>

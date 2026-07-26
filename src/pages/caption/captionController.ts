@@ -22,7 +22,6 @@ export class CaptionController implements Controller {
 
         document.querySelector<HTMLHeadingElement>("main > h2")!.innerText = this.template.title;
 
-
         this.image.src = this.template.image;
 
         for (const textField of this.template.texts) {

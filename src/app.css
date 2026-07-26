@@ -1,3 +1,4 @@
 @import "./theme.css";
+@import "pages/_layout.css";
 @import "pages/index.css";
 @import "pages/caption/caption.css";

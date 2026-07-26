@@ -13,7 +13,17 @@
     </head>
 
     <body>
-        <%~ it.body %>
+        <header>
+            <h1><%= it.title %></h1>
+        </header>
+
+        <main>
+            <%~ it.body %>
+        </main>
+
+        <footer>
+
+        </footer>
 
         <script src="app.js" type="module"></script>
     </body>

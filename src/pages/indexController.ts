@@ -7,7 +7,7 @@ type template = {
     image: string;
 }
 
-export class Index implements Controller {
+export class IndexController implements Controller {
     private cardTemplate: HTMLTemplateElement;
     private cardContainer: HTMLDivElement;
     private cardContainerTitle: HTMLHeadingElement;

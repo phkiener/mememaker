@@ -1,7 +1,7 @@
 import { Controller } from "../../controller";
 import { template, getTemplate } from "../../domain/templates";
 
-export class Caption implements Controller {
+export class CaptionController implements Controller {
     private readonly id: string;
     private canvas: HTMLElement;
     private image: HTMLImageElement;

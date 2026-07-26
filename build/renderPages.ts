@@ -7,7 +7,7 @@ const eta = new Eta( { views: "src/pages" });
 const target: Target = {
     name: "render pages",
     build: async () => {
-        const base = process.ETA_BASE ?? "/";
+        const base = process.env.ETA_BASE ?? "/";
 
         for await (const template of fs.glob("src/pages/**/*.eta")) {
             if (path.basename(template).startsWith("_")) {

@@ -6,7 +6,7 @@ import { Controller } from "./controller";
 export function resolveController(path: string, query: string): Controller {
     const parsedQuery = new URLSearchParams(query);
 
-    if (path === "caption") {
+    if (path === "caption/") {
         return new CaptionController(parsedQuery.get("id")!);
     }
 

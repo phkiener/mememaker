@@ -6,13 +6,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="/app.css" />
-        <link rel="preload" as="json" href="/assets/data.json" />
+        <base href="<%= it.base %>"/>
+
+        <link rel="stylesheet" href="app.css" />
+        <link rel="preload" as="json" href="assets/data.json" />
     </head>
 
     <body>
         <%~ it.body %>
 
-        <script src="/app.js" type="module"></script>
+        <script src="app.js" type="module"></script>
     </body>
 </html>

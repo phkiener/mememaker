@@ -7,13 +7,15 @@ const eta = new Eta( { views: "src/pages" });
 const target: Target = {
     name: "render pages",
     build: async () => {
+        const base = process.ETA_BASE ?? "/";
+
         for await (const template of fs.glob("src/pages/**/*.eta")) {
             if (path.basename(template).startsWith("_")) {
                 continue;
             }
 
             const templateName = path.relative("src/pages/", template).replace(/.eta$/, "");
-            const result = await eta.renderAsync(templateName, {});
+            const result = await eta.renderAsync(templateName, { base: base });
 
             const targetPath = "app/" + path.dirname(templateName) + "/index.html";
             await fs.mkdir(path.dirname(targetPath), { recursive: true });

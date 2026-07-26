@@ -12,6 +12,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  ETA_BASE: "/mememaker/"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

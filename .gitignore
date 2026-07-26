@@ -1,6 +1,8 @@
 # IDE & user files
 .idea/
 *.user
+.DS_Store
+._*
 
 # Build files
 node_modules/

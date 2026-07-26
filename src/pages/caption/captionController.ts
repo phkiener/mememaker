@@ -92,6 +92,8 @@ export class CaptionController implements Controller {
                     ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
                     ctx.drawImage(this.image, 0, 0, this.image.clientWidth, this.image.clientHeight);
                     ctx.drawImage(image, 0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+
+                    canvas.toBlob(b => navigator.clipboard.write([new ClipboardItem({ [b!.type]: b! })]), "image/png");
                 }, { once: true });
 
                 const exported = new XMLSerializer().serializeToString(this.canvas);

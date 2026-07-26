@@ -45,6 +45,9 @@
 <dialog id="export-dialog">
     <canvas></canvas>
     <div>
+        The image has been copied to your clipboard.
+    </div>
+    <div>
         <button type="button" command="close" commandfor="export-dialog">Close</button>
     </div>
 </dialog>

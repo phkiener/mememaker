@@ -8,7 +8,7 @@ const target: Target = {
     name: "render pages",
     build: async () => {
         for await (const template of fs.glob("src/pages/**/*.eta")) {
-            if (template.includes("_layout.eta")) {
+            if (path.basename(template).startsWith("_")) {
                 continue;
             }
 

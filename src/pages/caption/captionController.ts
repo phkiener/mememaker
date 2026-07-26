@@ -3,24 +3,24 @@ import { template, getTemplate } from "../../domain/templates";
 
 export class CaptionController implements Controller {
     private readonly id: string;
-    private canvas: HTMLElement;
-    private image: HTMLImageElement;
-    private controls: HTMLElement;
-    private template: template;
-    private exportDialog: HTMLDialogElement;
+    private canvas!: HTMLElement;
+    private image!: HTMLImageElement;
+    private controls!: HTMLElement;
+    private template!: template;
+    private exportDialog!: HTMLDialogElement;
 
     constructor(id: string) {
         this.id = id;
     }
 
     async init(document: Document): Promise<void> {
-        this.canvas = document.querySelector("main svg");
-        this.image = document.querySelector("main img");
-        this.controls = document.querySelector("main .captions");
-        this.exportDialog = document.querySelector("#export-dialog");
-        this.template = await getTemplate(this.id);
+        this.canvas = document.querySelector("main svg")!;
+        this.image = document.querySelector("main img")!;
+        this.controls = document.querySelector("main .captions")!;
+        this.exportDialog = document.querySelector("#export-dialog")!;
+        this.template = (await getTemplate(this.id))!;
 
-        document.querySelector<HTMLHeadingElement>("main > h2").innerText = this.template.title;
+        document.querySelector<HTMLHeadingElement>("main > h2")!.innerText = this.template.title;
 
 
         this.image.src = this.template.image;
@@ -30,6 +30,7 @@ export class CaptionController implements Controller {
             text.setAttribute("x", `${textField.x}`);
             text.setAttribute("y", `${textField.y}`);
             text.setAttribute("text-anchor", "middle");
+            text.innerHTML = textField.content;
 
             let dragging = false;
 
@@ -41,8 +42,8 @@ export class CaptionController implements Controller {
                     return;
                 }
 
-                const currentX = Number.parseFloat(text.getAttribute("x"));
-                const currentY = Number.parseFloat(text.getAttribute("y"));
+                const currentX = Number.parseFloat(text.getAttribute("x")!);
+                const currentY = Number.parseFloat(text.getAttribute("y")!);
 
                 const newX = currentX + evt.movementX;
                 const newY = currentY + evt.movementY;
@@ -51,7 +52,6 @@ export class CaptionController implements Controller {
                 text.setAttribute("y", `${newY}`);
             }, { passive: true });
 
-            text.innerHTML = "Hello World";
             this.canvas.appendChild(text);
 
             const input = document.createElement("input");
@@ -68,11 +68,11 @@ export class CaptionController implements Controller {
             if (evt.newState === "open") {
                 const image = document.createElement("img");
                 image.addEventListener("load", () => {
-                    const canvas = this.exportDialog.querySelector("canvas");
+                    const canvas = this.exportDialog.querySelector("canvas")!;
                     canvas.width = this.image.clientWidth;
                     canvas.height = this.image.clientHeight;
 
-                    const ctx = canvas.getContext("2d");
+                    const ctx = canvas.getContext("2d")!;
 
                     ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
                     ctx.drawImage(this.image, 0, 0, this.image.clientWidth, this.image.clientHeight);

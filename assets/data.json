@@ -15,16 +15,19 @@
       "texts": [
         {
           "label": "lifted-child",
+          "content": "text",
           "x": 180,
           "y": 64
         },
         {
           "label": "drowning-child",
+          "content": "text",
           "x": 75,
           "y": 153
         },
         {
           "label": "skeleton",
+          "content": "text",
           "x": 197,
           "y": 316
         }

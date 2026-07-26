@@ -7,6 +7,7 @@ export type template = {
 
 export type templateCaption = {
     label: string;
+    content: string;
     x: number;
     y: number;
 }
@@ -16,7 +17,7 @@ let cachedData: template[] = [];
 export async function getTemplate(id: string): Promise<template | null> {
     const templates = await getAllTemplates();
 
-    return templates.filter(t => t.id == id).at(0);
+    return templates.filter(t => t.id == id).at(0) ?? null;
 }
 
 export async function getAllTemplates(): Promise<template[]> {

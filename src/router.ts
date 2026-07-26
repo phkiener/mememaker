@@ -7,7 +7,7 @@ export function resolveController(location: Location): Controller {
     const query = new URLSearchParams(location.search);
 
     if (location.pathname === "/caption") {
-        return new CaptionController(query.get("id"));
+        return new CaptionController(query.get("id")!);
     }
 
     return new IndexController();

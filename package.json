@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node --import tsx build.ts",
     "watch": "node --import tsx build.ts --watch",
-    "serve": "dotnet miniserv app/"
+    "serve": "dotnet miniserv --no-cache --handle-404 app/"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

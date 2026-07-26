@@ -1,41 +1,46 @@
 <% layout("../_layout", { title: "Mememaker" }) %>
 
-<h2>#</h2>
-<section id="caption-container">
-    <section class="image">
-        <img src="" alt="" />
-        <svg>
-            <style>
-                text {
-                    font-family: Impact, sans-serif;
-                    text-transform: uppercase;
-
-                    fill: white;
-                    stroke: black;
-                    stroke-width: 2px;
-
-                    font-size: 36px;
-
-                    user-select: none;
-                }
-
-                svg:hover text {
-                    outline: 2px dashed black;
-                    outline-offset: 1px;
-
-                    cursor: move;
-                }
-            </style>
-        </svg>
-    </section>
-    <section>
-        <div class="captions"></div>
-        <div>
-            <button type="button" command="show-modal" commandfor="export-dialog">Export</button>
-        </div>
-    </section>
+<section class="card">
+    <a class="small" href="">Back to templates</a>
+    <h2>#</h2>
 </section>
 
+<section class="card">
+    <article id="caption-container">
+        <section class="image">
+            <img src="" alt="" />
+            <svg>
+                <style>
+                    text {
+                        font-family: Impact, sans-serif;
+                        text-transform: uppercase;
+
+                        fill: white;
+                        stroke: black;
+                        stroke-width: 2px;
+
+                        font-size: 36px;
+
+                        user-select: none;
+                    }
+
+                    svg:hover text {
+                        outline: 2px dashed black;
+                        outline-offset: 1px;
+
+                        cursor: move;
+                    }
+                </style>
+            </svg>
+        </section>
+        <section class="controls">
+            <div class="captions"></div>
+            <div class="actions">
+                <button type="button" class="primary" command="show-modal" commandfor="export-dialog">Export</button>
+            </div>
+    </section>
+    </article>
+</section>
 
 <dialog id="export-dialog">
     <canvas></canvas>

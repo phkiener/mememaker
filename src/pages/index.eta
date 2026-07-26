@@ -7,13 +7,13 @@
 </section>
 
 <template id="meme-card">
-    <article class="meme-card">
+    <article class="meme-card card">
         <figure>
             <figcaption>#</figcaption>
             <img src="#" alt="#" />
         </figure>
 
-        <footer>
+        <footer class="small">
             <a href="#">Caption this</a>
         </footer>
     </article>

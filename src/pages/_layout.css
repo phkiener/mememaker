@@ -36,7 +36,7 @@ body {
         box-sizing: border-box;
 
         margin-inline: auto;
-        padding-block: 1lh;
+        max-height: calc(100dvh - 72px);
         max-width: 120ch;
 
         display: flex;

@@ -20,7 +20,7 @@ export class CaptionController implements Controller {
         this.exportDialog = document.querySelector("#export-dialog")!;
         this.template = (await getTemplate(this.id))!;
 
-        document.querySelector<HTMLHeadingElement>("main > h2")!.innerText = this.template.title;
+        document.querySelector<HTMLHeadingElement>("main h2")!.innerText = this.template.title;
 
         this.image.src = this.template.image;
 

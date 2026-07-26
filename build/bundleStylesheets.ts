@@ -11,7 +11,7 @@ const target: Target = {
     name: "bundle stylesheets",
     build: async () => {
         const result = await bundleAsync(config);
-        await fs.writeFile("app/css/app.css", result.code);
+        await fs.writeFile("app/app.css", result.code);
     }
 };
 

@@ -8,7 +8,7 @@ const config: InlineConfig = {
 };
 
 const target: Target = {
-    name: "stylesheet bundle",
+    name: "bundle stylesheets",
     build: async () => {
         const result = await bundleAsync(config);
         await fs.writeFile("app/css/app.css", result.code);

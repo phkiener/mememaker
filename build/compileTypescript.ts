@@ -13,7 +13,7 @@ const config: InlineConfig = {
 };
 
 const target: IncrementalTarget = {
-    name: "typescript compile",
+    name: "compile typescript",
     build: async () => {
         await build(Object.assign({ clean: true, failOnWarn: true }, config));
     },

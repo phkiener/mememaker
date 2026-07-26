@@ -1,8 +1,9 @@
-import typescript from "./build/typescriptCompile";
-import styles from "./build/stylesheetBundle";
+import typescript from "./build/compileTypescript";
+import styles from "./build/bundleStylesheets";
+import assets from "./build/copyAssets";
 import * as fs from "node:fs";
 
-const targets = [typescript, styles];
+const targets = [typescript, styles, assets];
 const incrementalBuildDelay = 2000;
 
 for (const target of targets) {

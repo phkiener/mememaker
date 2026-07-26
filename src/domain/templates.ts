@@ -20,7 +20,7 @@ export async function getTemplate(id: string): Promise<template | null> {
 }
 
 export async function getAllTemplates(): Promise<template[]> {
-    const data = await fetch("/data/templates.json");
+    const data = await fetch("/assets/data.json");
     if (data.ok) {
         const response = await data.json();
         cachedData = response.templates as template[];

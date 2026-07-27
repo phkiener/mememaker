@@ -16,11 +16,11 @@ export class CaptionController implements Controller {
     async init(document: Document): Promise<void> {
         this.canvas = document.querySelector("main svg")!;
         this.image = document.querySelector("main img")!;
-        this.controls = document.querySelector("main .captions")!;
+        this.controls = document.querySelector("main #captions")!;
         this.exportDialog = document.querySelector("#export-dialog")!;
         this.template = (await getTemplate(this.id))!;
 
-        document.querySelector<HTMLHeadingElement>("main h2")!.innerText = this.template.title;
+        document.querySelector<HTMLHeadingElement>("#template-name")!.innerText = this.template.title;
 
         this.image.addEventListener("load", () => {
             for (const textField of this.template.texts) {

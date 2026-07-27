@@ -1,5 +1,5 @@
 /* Container */
-.flex { display: flex; }
+:not(dialog).flex, dialog.flex:open { display: flex; }
 
 .flex.as-row { flex-direction: row; }
 .flex.as-column { flex-direction: column; }

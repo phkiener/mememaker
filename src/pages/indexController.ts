@@ -34,12 +34,12 @@ export class IndexController implements Controller {
             const tags = templateInstance.querySelector<HTMLElement>(".tags");
             for (const tag of template.tags) {
                 const tagInstance = document.importNode(this.tagTemplate.content, true);
-                tagInstance.querySelector("span")!.innerText = tag;
+                tagInstance.querySelector("a")!.innerText = tag;
 
                 tags?.appendChild(tagInstance);
             }
 
-            const link = templateInstance.querySelector("a")!;
+            const link = templateInstance.querySelector<HTMLLinkElement>("footer a")!;
             link.href = `caption?id=${template.id}`;
 
             this.cardContainer.appendChild(templateInstance);

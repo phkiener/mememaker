@@ -1,0 +1,18 @@
+/* Color-scheme */
+.light { color-scheme: light; }
+.dark { color-scheme: dark; }
+.light-dark { color-scheme: light dark; }
+
+/* Background */
+.bg-surface { background: light-dark(var(--color-neutral-050), var(--color-neutral-950)); }
+.bg-primary { background: light-dark(var(--color-neutral-700), var(--color-neutral-300)); }
+.bg-secondary { background: light-dark(var(--color-neutral-500), var(--color-neutral-400)); }
+.bg-tertiary { background: light-dark(var(--color-neutral-300), var(--color-neutral-600)); }
+.bg-accent { background: light-dark(var(--color-blue-300), var(--color-red-800)); }
+
+/* Foreground */
+.fg-surface { color: light-dark(var(--color-neutral-950), var(--color-neutral-050)); }
+.fg-primary { color: light-dark(var(--color-neutral-200), var(--color-neutral-900)); }
+.fg-secondary { color: light-dark(var(--color-neutral-300), var(--color-neutral-600)); }
+.fg-tertiary { color: light-dark(var(--color-neutral-700), var(--color-neutral-200)); }
+.fg-accent { color: light-dark(var(--color-blue-400), var(--color-red-600)); }

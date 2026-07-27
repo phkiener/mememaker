@@ -5,7 +5,7 @@ const config: InlineConfig = {
     entry: ["src/app.ts"],
 
     format: "module",
-    outDir: "app/",
+    outDir: "build/",
     platform: "browser",
     logLevel: "silent",
 

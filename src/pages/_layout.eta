@@ -13,7 +13,7 @@
     </head>
 
     <body class="full-screen flex as-column align-stretch bg-surface fg-primary">
-        <header class="pi-6 pb-5 no-flex">
+        <header class="pi-6 pb-5 keep-size">
             <h1 class="text-title fg-accent text-no-select"><%= it.title %></h1>
         </header>
 

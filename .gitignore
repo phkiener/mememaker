@@ -6,4 +6,4 @@
 
 # Build files
 node_modules/
-app/
+build/

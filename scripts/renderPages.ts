@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { Eta } from "eta";
 import { Target } from "./target";
 
-const eta = new Eta( { views: "src/pages" });
+const eta = new Eta({ views: "src/pages" });
 
 const target: Target = {
     name: "render pages",
@@ -18,7 +18,7 @@ const target: Target = {
             const templateName = path.relative("src/pages/", template).replace(/.eta$/, "");
             const result = await eta.renderAsync(templateName, { base: base });
 
-            const targetPath = "app/" + path.dirname(templateName) + "/index.html";
+            const targetPath = "build/" + path.dirname(templateName) + "/index.html";
             await fs.mkdir(path.dirname(targetPath), { recursive: true });
             await fs.writeFile(targetPath, result);
         }

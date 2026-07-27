@@ -1,9 +1,9 @@
-import typescript from "./build/compileTypescript";
-import styles from "./build/bundleStylesheets";
-import assets from "./build/copyAssets";
-import pages from "./build/renderPages";
+import typescript from "./scripts/compileTypescript";
+import styles from "./scripts/bundleStylesheets";
+import assets from "./scripts/copyAssets";
+import pages from "./scripts/renderPages";
+import { Target } from "./scripts/target";
 import * as fs from "node:fs";
-import { Target } from "./build/target";
 
 const targets: Target[] = [typescript, styles, assets, pages];
 const incrementalBuildDelay = 1000;

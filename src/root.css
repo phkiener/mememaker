@@ -1,6 +1,9 @@
-@layer base, defs, specific;
+@layer base, defs, effects, specific;
 
 @import "design/reset.css" layer(base);
 @import "design/theme.css" layer(base);
 @import "design/typography.css" layer(defs);
-@import "design/classes.css" layer(defs);
+@import "design/colors.css" layer(defs);
+@import "design/flex.css" layer(defs);
+@import "design/sizing.css" layer(defs);
+@import "design/effects.css" layer(effects);

@@ -3,6 +3,7 @@ import { getAllTemplates, template } from "../domain/templates";
 
 export class IndexController implements Controller {
     private cardTemplate!: HTMLTemplateElement;
+    private tagTemplate!: HTMLTemplateElement;
     private cardContainer!: HTMLDivElement;
     private cardContainerTitle!: HTMLHeadingElement;
 
@@ -10,8 +11,9 @@ export class IndexController implements Controller {
 
     async init(document: Document): Promise<void> {
         this.cardTemplate = document.querySelector<HTMLTemplateElement>("main template#card-template")!;
+        this.tagTemplate = document.querySelector<HTMLTemplateElement>("main template#tag-template")!;
         this.cardContainer = document.querySelector<HTMLDivElement>("#meme-grid")!;
-        this.cardContainerTitle = document.querySelector<HTMLHeadingElement>("main .page-heading") as HTMLHeadingElement;
+        this.cardContainerTitle = document.querySelector<HTMLHeadingElement>("#template-count") as HTMLHeadingElement;
 
         this.templates = await getAllTemplates();
 
@@ -31,10 +33,10 @@ export class IndexController implements Controller {
 
             const tags = templateInstance.querySelector<HTMLElement>(".tags");
             for (const tag of template.tags) {
-                const tagSpan = document.createElement("span");
-                tagSpan.innerText = tag;
+                const tagInstance = document.importNode(this.tagTemplate.content, true);
+                tagInstance.querySelector("span")!.innerText = tag;
 
-                tags?.appendChild(tagSpan);
+                tags?.appendChild(tagInstance);
             }
 
             const link = templateInstance.querySelector("a")!;

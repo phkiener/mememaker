@@ -1,0 +1,62 @@
+.text-regular {
+    font-family: sans-serif;
+    font-size: var(--size-rel-5);
+    line-height: 1.5;
+    font-weight: 400;
+
+    text-decoration: none;
+}
+
+.text-title {
+    font-family: sans-serif;
+    font-size: var(--size-rel-7);
+    line-height: 1.125;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.text-heading {
+    font-family: sans-serif;
+    font-size: var(--size-rel-6);
+    line-height: 1.125;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.text-subheading {
+    font-family: sans-serif;
+    font-size: var(--size-rel-6);
+    line-height: 1.25;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+.text-no-select {
+    user-select: none;
+    cursor: default;
+}
+
+.text-label-upper {
+    font-family: sans-serif;
+    font-size: var(--size-rel-5);
+    line-height: 1.5;
+    font-weight: 500;
+
+    text-transform: uppercase;
+}
+
+.text-label-lower {
+    font-family: sans-serif;
+    font-size: var(--size-rel-5);
+    line-height: 1.5;
+    font-weight: 500;
+
+    text-transform: lowercase;
+}
+
+.text-prefix::before {
+    content: attr(data-prefix);
+}

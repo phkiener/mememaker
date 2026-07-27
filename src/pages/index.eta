@@ -1,20 +1,28 @@
 <% layout("./_layout", { title: "Mememaker" }) %>
 
-<div class="card">
-    <h2 class="page-heading small">0 templates</h2>
+<div class="bg-secondary fg-primary round-lg pi-5 pb-4 no-flex">
+    <h2 class="text-heading" id="template-count">0 templates</h2>
 </div>
 
-<section id="meme-grid"></section>
+<section id="meme-grid" class="flex as-row allow-wrap justify-start align-stretch gap-4"></section>
 
 <template id="card-template">
-    <article class="card meme-template">
-        <header class="small">
-            <h3 class="title"></h3>
-            <div class="tags"></div>
+    <article class="bg-secondary fg-primary round-lg pi-5 pb-4 w-3 flex as-column gap-3">
+        <header class="no-flex flex as-column gap-1 align-start">
+            <h3 class="title text-subheading"></h3>
+            <div class="tags fg-accent text-label-lower flex as-row allow-wrap gap-2 align-center">
+
+            </div>
         </header>
-        <img src="" alt="">
-        <footer class="small">
-            <a href="">Caption this</a>
+        <img src="" alt="" class="cover">
+        <footer class="no-flex self-stretch flex as-column align-stretch">
+            <a href="" class="bg-accent fg-surface round-md flex as-row justify-center align-center pi-3 pb-2 text-label-upper">
+                Caption this
+            </a>
         </footer>
     </article>
+</template>
+
+<template id="tag-template">
+    <span class="bg-tertiary fg-accent pi-2 pb-1 round-sm text-label-lower text-prefix" data-prefix="#"></span>
 </template>

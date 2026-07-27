@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light-dark">
     <head>
         <title><%= it.title %></title>
 
@@ -8,22 +8,18 @@
 
         <base href="<%= it.base %>"/>
 
-        <link rel="stylesheet" href="app.css" />
+        <link rel="stylesheet" href="root.css" />
         <link rel="preload" as="json" href="assets/data.json" />
     </head>
 
-    <body>
-        <header>
-            <h1><%= it.title %></h1>
+    <body class="full-screen flex as-column align-stretch bg-surface fg-primary">
+        <header class="pi-6 pb-5 no-flex">
+            <h1 class="text-title fg-accent text-no-select"><%= it.title %></h1>
         </header>
 
-        <main>
+        <main class="flex as-column align-stretch gap-4 pi-9 pb-6 text-regular">
             <%~ it.body %>
         </main>
-
-        <footer>
-
-        </footer>
 
         <script src="app.js" type="module"></script>
     </body>

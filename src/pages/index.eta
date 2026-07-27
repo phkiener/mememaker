@@ -1,20 +1,20 @@
 <% layout("./_layout", { title: "Mememaker" }) %>
 
-<h2># templates</h2>
+<div class="card">
+    <h2 class="page-heading small">0 templates</h2>
+</div>
 
-<section id="meme-grid">
+<section id="meme-grid"></section>
 
-</section>
-
-<template id="meme-card">
-    <article class="meme-card card">
-        <figure>
-            <figcaption>#</figcaption>
-            <img src="#" alt="#" />
-        </figure>
-
+<template id="card-template">
+    <article class="card meme-template">
+        <header class="small">
+            <h3 class="title"></h3>
+            <div class="tags"></div>
+        </header>
+        <img src="" alt="">
         <footer class="small">
-            <a href="#">Caption this</a>
+            <a href="">Caption this</a>
         </footer>
     </article>
 </template>

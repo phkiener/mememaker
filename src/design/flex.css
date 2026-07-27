@@ -44,6 +44,7 @@
 .flex > .w-12 { flex: 0 1 calc((12 / 12) * 100%); }
 
 .flex > .w-fit { flex: 0 1 fit-content; }
+.flex > .w-max { flex: 1 1 100%; }
 
 .flex > .self-stretch { align-self: stretch; }
 .flex > .self-center { align-self: center; }

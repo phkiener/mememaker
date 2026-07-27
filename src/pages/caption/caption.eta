@@ -6,7 +6,7 @@
 </div>
 
 <article id="caption-container" class="bg-secondary fg-primary round-lg pi-5 pb-4 flex as-row gap-2">
-    <section class="w-fit stack">
+    <section class="stack w-fit">
         <img src="" alt="" class="contain source" />
         <svg>
             <style>
@@ -18,21 +18,21 @@
                     stroke: black;
                     stroke-width: 2px;
 
-                    font-size: 36px;
+                    font-size: 360%;
 
                     user-select: none;
                 }
 
                 svg:hover text {
                     outline: 2px dashed black;
-                    outline-offset: 1px;
+                    outline-offset: -2px;
 
                     cursor: move;
                 }
             </style>
         </svg>
     </section>
-    <section class="flex as-column gap-4 align-stretch">
+    <section class="flex as-column gap-4 align-stretch w-max">
         <div class="flex as-column gap-2 align-stretch no-grow" id="captions"></div>
         <div class="flex as-row gap-2 align-start">
             <button class="text-label-upper bg-accent fg-surface round-md pi-3 pb-2 keep-size hover-opacity-8" type="button" command="show-modal" commandfor="export-dialog">Export</button>

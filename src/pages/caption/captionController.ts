@@ -84,14 +84,14 @@ export class CaptionController implements Controller {
                 const image = document.createElement("img");
                 image.addEventListener("load", () => {
                     const canvas = this.exportDialog.querySelector("canvas")!;
-                    canvas.width = this.image.clientWidth;
-                    canvas.height = this.image.clientHeight;
+                    canvas.width = this.image.naturalWidth;
+                    canvas.height = this.image.naturalHeight;
 
                     const ctx = canvas.getContext("2d")!;
 
-                    ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
-                    ctx.drawImage(this.image, 0, 0, this.image.clientWidth, this.image.clientHeight);
-                    ctx.drawImage(image, 0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+                    ctx.clearRect(0, 0, this.image.naturalWidth, this.image.naturalHeight);
+                    ctx.drawImage(this.image, 0, 0, this.image.naturalWidth, this.image.naturalHeight);
+                    ctx.drawImage(image, 0, 0, this.image.naturalWidth, this.image.naturalHeight);
 
                     canvas.toBlob(b => navigator.clipboard.write([new ClipboardItem({ [b!.type]: b! })]), "image/png");
                 }, { once: true });

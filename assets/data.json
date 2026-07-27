@@ -6,7 +6,18 @@
       "image": "assets/templates/a-train-hitting-a-school-bus.png",
       "tags": ["foo", "bar"],
       "texts": [
-
+        {
+          "label": "bus",
+          "content": "text",
+          "x": "0.6183",
+          "y": "0.2815"
+        },
+        {
+          "label": "train",
+          "content": "text",
+          "x": "0.3186",
+          "y": "0.7094"
+        }
       ]
     },
     {

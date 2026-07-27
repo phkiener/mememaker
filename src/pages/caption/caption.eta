@@ -6,8 +6,8 @@
 </div>
 
 <article id="caption-container" class="bg-secondary fg-primary round-lg pi-5 pb-4 flex as-row gap-2">
-    <section class="w-8">
-        <img src="" alt="" class="contain" />
+    <section class="w-fit stack">
+        <img src="" alt="" class="contain source" />
         <svg>
             <style>
                 text {
@@ -35,13 +35,13 @@
     <section class="flex as-column gap-4 align-stretch">
         <div class="flex as-column gap-2 align-stretch no-grow" id="captions"></div>
         <div class="flex as-row gap-2 align-start">
-            <button class="text-label-upper bg-accent fg-surface round-md pi-3 pb-2 keep-size" type="button" command="show-modal" commandfor="export-dialog">Export</button>
+            <button class="text-label-upper bg-accent fg-surface round-md pi-3 pb-2 keep-size hover-opacity-8" type="button" command="show-modal" commandfor="export-dialog">Export</button>
         </div>
     </section>
 </article>
 
 <dialog class="mb-auto mi-auto bg-primary fg-primary round-lg flex as-column gap-4 align-center" id="export-dialog">
     <span class="text-regular keep-size">The image has been copied to your clipboard.</span>
-    <canvas style="width: 400px; height: 600px;"></canvas>
-    <button class="text-label-upper bg-tertiary fg-surface round-md pi-3 pb-2 keep-size" type="button" command="close" commandfor="export-dialog">Close</button>
+    <canvas></canvas>
+    <button class="text-label-upper bg-tertiary fg-surface round-md pi-3 pb-2 keep-size hover-opacity-8" type="button" command="close" commandfor="export-dialog">Close</button>
 </dialog>

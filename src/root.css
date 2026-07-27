@@ -5,5 +5,6 @@
 @import "design/typography.css" layer(defs);
 @import "design/colors.css" layer(defs);
 @import "design/flex.css" layer(defs);
+@import "design/stack.css" layer(defs);
 @import "design/sizing.css" layer(defs);
 @import "design/effects.css" layer(effects);

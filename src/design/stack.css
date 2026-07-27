@@ -1,0 +1,3 @@
+.stack { anchor-scope: --source; display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr; place-items: center center; }
+.stack > .source { anchor-name: --source; }
+.stack > :not(.source) { position-anchor: --source; position: absolute; position-area: center center; width: anchor-size(--source width); height: anchor-size(--source height); }

@@ -43,5 +43,7 @@
 .flex > .w-11 { flex: 0 1 calc((11 / 12) * 100%); }
 .flex > .w-12 { flex: 0 1 calc((12 / 12) * 100%); }
 
+.flex > .w-fit { flex: 0 1 fit-content; }
+
 .flex > .self-stretch { align-self: stretch; }
 .flex > .self-center { align-self: center; }

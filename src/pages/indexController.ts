@@ -1,5 +1,5 @@
-import { Controller } from "../controller";
-import { getAllTemplates, template } from "../domain/templates";
+import { Controller } from "../lib/controller";
+import { getAllTemplates, template } from "../lib/templates";
 
 export class IndexController implements Controller {
     private cardTemplate!: HTMLTemplateElement;

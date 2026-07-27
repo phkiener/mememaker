@@ -1,5 +1,5 @@
-import { Controller } from "../../controller";
-import { template, getTemplate } from "../../domain/templates";
+import { Controller } from "../../lib/controller";
+import { template, getTemplate } from "../../lib/templates";
 
 export class CaptionController implements Controller {
     private readonly id: string;

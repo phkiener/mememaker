@@ -1,4 +1,8 @@
-export default function() {
+import { registerRoute } from "../router.ts";
+
+registerRoute(/^\/$/g, render);
+
+function render() {
     return (
         <>
             <h1>Hello World!</h1>

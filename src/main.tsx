@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { attachRouter, NavigatedEvent } from "./router.ts";
+import {attachRouter, NavigatedEvent, NavigationFailureEvent} from "./router";
 
 import './index';
 import './otherPage';
@@ -11,15 +11,18 @@ const renderContainer = createRoot(rootElement);
 
 document.addEventListener("DOMContentLoaded", () => {
     // @ts-ignore
-    rootElement.addEventListener("navigate", onNavigate);
+    rootElement.addEventListener(NavigatedEvent.eventName, onNavigate);
+
+    // @ts-ignore
+    rootElement.addEventListener(NavigationFailureEvent.eventName, onNavigateFailure);
 
     attachRouter(rootElement);
 })
 
 function onNavigate(evt: NavigatedEvent) {
-    if (evt.view) {
-        renderContainer.render(<StrictMode>{evt.view(evt.args!)}</StrictMode>);
-    } else {
-        renderContainer.render(<StrictMode>{notFound()}</StrictMode>);
-    }
+    renderContainer.render(<StrictMode>{evt.view(evt.args)}</StrictMode>);
+}
+
+function onNavigateFailure() {
+    renderContainer.render(<StrictMode>{notFound()}</StrictMode>);
 }

@@ -1,6 +1,6 @@
-import { registerRoute } from "../router.ts";
+import { registerRoute } from "../router";
 
-registerRoute(/^\/$/, render);
+registerRoute("/", render);
 
 function render() {
     return (

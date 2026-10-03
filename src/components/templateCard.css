@@ -1,3 +1,10 @@
+a:has(> .template-card) {
+    display: contents;
+
+    color: inherit;
+    text-decoration: inherit;
+}
+
 .template-card {
     box-sizing: border-box;
     height: 100%;
@@ -7,10 +14,13 @@
     align-items: stretch;
     justify-content: space-evenly;
 
+    padding: 12px;
+    background-color: black;
 
     & > .--title {
         flex: 0 0 max-content;
 
+        color: white;
         text-align: center;
     }
 
@@ -22,18 +32,19 @@
         justify-content: center;
 
         & > img {
-
             max-height: 100%;
             max-width: 100%;
 
             object-fit: contain;
         }
+
+        transition: margin 0.1s ease-in-out;
     }
+}
 
-    & > .--caption-button {
-        flex: 0 0 max-content;
 
-        font-size: 1.2rem;
-        text-align: center;
+.template-card:hover {
+    & > .--image-container {
+        margin: -6px;
     }
 }

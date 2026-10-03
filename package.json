@@ -1,25 +1,25 @@
 {
-  "private": "true",
-  "type": "module",
   "name": "mememaker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "node --import tsx build.ts",
-    "watch": "node --import tsx build.ts --watch",
-    "serve": "dotnet miniserv --no-cache --handle-404 build/"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
-    "eta": "^4.6.0",
-    "lightningcss": "^1.32.0",
-    "tsdown": "^0.22.3",
-    "tsx": "^4.23.1"
-  },
-  "engines": {
-    "node": "^26.0.0",
-    "npm": "^11.0.0"
-  },
-  "allowScripts": {
-    "esbuild@0.28.1": true,
-    "fsevents@2.3.3": true
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
   }
 }

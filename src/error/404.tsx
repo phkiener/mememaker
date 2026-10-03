@@ -1,4 +1,4 @@
-export default function() {
+function NotFound() {
     return (
         <>
             <h1>Page not found</h1>
@@ -6,3 +6,5 @@ export default function() {
         </>
     );
 }
+
+export default NotFound;

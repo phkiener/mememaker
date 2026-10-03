@@ -1,18 +1,21 @@
 import type { ReactNode } from "react";
+import './layout.css';
 
 type LayoutProps = { children: ReactNode };
 
 function layout(props: LayoutProps) {
     return (
         <>
-            <header>
-                mememaker
+            <header className="layout-header">
+                <a href="/">mememaker</a>
             </header>
-            <main>
+
+            <main className="layout-main">
                 {props.children}
             </main>
-            <footer>
-                (c) Some guy 2026
+
+            <footer className="layout-footer">
+                (c) some guy in 2026
             </footer>
         </>
     );

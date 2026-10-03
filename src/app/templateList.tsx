@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import TemplateCard from "../components/templateCard.tsx";
+import './templateList.css';
 
 type template = {
     id: string;
@@ -6,23 +8,19 @@ type template = {
     image: string;
 };
 
-function templates() {
+function templateList() {
     const [templates, setTemplates] = useState<template[]>([]);
     useEffect(() => { loadTemplates().then(templates => setTemplates(templates)); }, []);
 
     return (
         <>
-            <h1>Hello World!</h1>
-            <p>Welcome from the Index page.</p>
+            {templates?.length === 1 && <h2>1 template found</h2>}
+            {templates?.length !== 1 && <h2>{templates?.length} templates found</h2>}
 
-            <p>Found {templates?.length} templates</p>
-            <ul>
+            <ul className="template-list">
                 {templates?.map(t =>
                     <li key={t.id}>
-                        <figure>
-                            <img src={t.image} alt="Template" />
-                            <figcaption>{t.title}</figcaption>
-                        </figure>
+                        <TemplateCard id={t.id} title={t.title} imageUrl={t.image} />
                     </li>
                 )}
             </ul>
@@ -37,4 +35,4 @@ async function loadTemplates(): Promise<template[]> {
     return data.templates as template[];
 }
 
-export default templates;
+export default templateList;

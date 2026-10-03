@@ -1,0 +1,39 @@
+.template-card {
+    box-sizing: border-box;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+
+
+    & > .--title {
+        flex: 0 0 max-content;
+
+        text-align: center;
+    }
+
+    & > .--image-container {
+        flex: 1 1 auto;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & > img {
+
+            max-height: 100%;
+            max-width: 100%;
+
+            object-fit: contain;
+        }
+    }
+
+    & > .--caption-button {
+        flex: 0 0 max-content;
+
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}

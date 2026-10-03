@@ -10,7 +10,7 @@ type TemplateCardProps = {
 function templateCard(props: TemplateCardProps) {
     return (
         <>
-            <Link to={`/templates/${props.id}`}>
+            <Link to={`/caption/${props.id}`}>
                 <article className="template-card">
                     <header className="--title">{props.title}</header>
                     <div className="--image-container">

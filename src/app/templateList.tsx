@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
+import { fetchTemplates, type Template } from "../templates";
 import TemplateCard from "../components/templateCard.tsx";
 import './templateList.css';
 
-type template = {
-    id: string;
-    title: string;
-    image: string;
-};
-
 function templateList() {
-    const [templates, setTemplates] = useState<template[]>([]);
-    useEffect(() => { loadTemplates().then(templates => setTemplates(templates)); }, []);
+    const [templates, setTemplates] = useState<Template[]>([]);
+    useEffect(() => { fetchTemplates().then(templates => setTemplates(templates)); }, []);
 
     return (
         <>
@@ -26,13 +21,6 @@ function templateList() {
             </ul>
         </>
     );
-}
-
-async function loadTemplates(): Promise<template[]> {
-    const response = await fetch("/data.json");
-    const data = await response.json();
-
-    return data.templates as template[];
 }
 
 export default templateList;

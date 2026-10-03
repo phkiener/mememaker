@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 
 import Layout from "./app/layout.tsx";
 import TemplateList from "./app/templateList.tsx";
+import CaptionTemplate from "./app/captionTemplate.tsx";
 import NotFound from './app/notFound.tsx';
 
 import './main.css';
@@ -16,6 +17,7 @@ createRoot(rootElement).render(
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={ <TemplateList /> } />
+                    <Route path="/caption/:id" element={ <CaptionTemplate /> } />
                     <Route path="*" element={ <NotFound /> } />
                 </Routes>
             </BrowserRouter>

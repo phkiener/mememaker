@@ -5,8 +5,9 @@ export function navigate(path: string) {
     resolveRoute(path);
 }
 
-const routes: Array<{ route: RegExp, view: () => React.JSX.Element}> = [];
-export function registerRoute(route: RegExp, view: () => React.JSX.Element) {
+const routes: Array<{ route: RegExp, view: (args: RegExpMatchArray) => React.JSX.Element}> = [];
+
+export function registerRoute(route: RegExp, view: (args: RegExpMatchArray) => React.JSX.Element) {
     routes.push({ route: route, view: view });
 }
 
@@ -15,18 +16,20 @@ function resolveRoute(location: string) {
     const bestMatch = matchResults.find(r => r.match);
 
      let view = bestMatch?.route.view ?? null;
-     navigationTarget?.dispatchEvent(new NavigatedEvent(view));
+     navigationTarget?.dispatchEvent(new NavigatedEvent(view, bestMatch?.match ?? null));
 }
 
 let navigationTarget: HTMLElement | null;
 
 export class NavigatedEvent extends Event {
-    public readonly view: (() => React.JSX.Element) | null;
+    public readonly view: ((args: RegExpMatchArray) => React.JSX.Element) | null;
+    public readonly args: RegExpMatchArray | null;
 
-    constructor(view: (() => React.JSX.Element) | null) {
+    constructor(view: ((args: RegExpMatchArray) => React.JSX.Element) | null, args: RegExpMatchArray | null) {
         super("navigate");
 
         this.view = view;
+        this.args = args;
     }
 }
 

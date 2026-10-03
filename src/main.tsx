@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function onNavigate(evt: NavigatedEvent) {
-    const view = evt.view ?? notFound;
-    renderContainer.render(<StrictMode>{view()}</StrictMode>);
+    if (evt.view) {
+        renderContainer.render(<StrictMode>{evt.view(evt.args!)}</StrictMode>);
+    } else {
+        renderContainer.render(<StrictMode>{notFound()}</StrictMode>);
+    }
 }

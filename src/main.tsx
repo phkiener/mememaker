@@ -1,28 +1,21 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import {attachRouter, NavigatedEvent, NavigationFailureEvent} from "./router";
+import { BrowserRouter, Routes, Route } from "react-router";
 
-import './index';
-import './otherPage';
-import notFound from './error/404'
+import Layout from "./app/layout.tsx";
+import Templates from "./app/templates.tsx";
+import NotFound from './app/notFound.tsx';
 
 const rootElement = document.getElementById('app')!;
-const renderContainer = createRoot(rootElement);
 
-document.addEventListener("DOMContentLoaded", () => {
-    // @ts-ignore
-    rootElement.addEventListener(NavigatedEvent.eventName, onNavigate);
-
-    // @ts-ignore
-    rootElement.addEventListener(NavigationFailureEvent.eventName, onNavigateFailure);
-
-    attachRouter(rootElement);
-})
-
-function onNavigate(evt: NavigatedEvent) {
-    renderContainer.render(<StrictMode>{evt.view(evt.args)}</StrictMode>);
-}
-
-function onNavigateFailure() {
-    renderContainer.render(<StrictMode>{notFound()}</StrictMode>);
-}
+createRoot(rootElement).render(
+    <StrictMode>
+        <Layout>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={ <Templates /> } />
+                    <Route path="*" element={ <NotFound /> } />
+                </Routes>
+            </BrowserRouter>
+        </Layout>
+    </StrictMode>);

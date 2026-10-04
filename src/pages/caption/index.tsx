@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { fetchTemplate, type Template } from "../templates";
-import './captionTemplate.css'
+import { fetchTemplate, type Template } from "../../templates";
+import './index.css'
 
 function captionTemplate() {
     const params = useParams();

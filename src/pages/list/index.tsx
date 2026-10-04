@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchTemplates, type Template } from "../templates";
-import TemplateCard from "../components/templateCard.tsx";
-import './templateList.css';
+import { fetchTemplates, type Template } from "../../templates";
+import TemplateCard from "./templateCard.tsx";
+import './index.css';
 
 function templateList() {
     const [templates, setTemplates] = useState<Template[]>([]);

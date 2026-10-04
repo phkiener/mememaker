@@ -1,7 +1,11 @@
+import './renderedCaption.css';
+
 type Caption = {
     text: string;
     x: number;
     y: number;
+
+    // TODO: Probably gonna switch to "top", "left", "bottom", "right" for this. Makes sizing easier. Text will just.. have to clip, I guess.
 }
 
 type RenderedCaptionProps = {

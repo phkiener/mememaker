@@ -1,0 +1,35 @@
+.caption-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 36px;
+
+    > .preview {
+        flex: 0 1 50%;
+
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+
+        > svg, > img {
+            grid-row: 1 / -1;
+            grid-column: 1 / -1;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+    }
+
+    > .controls {
+        flex: 1 1 50%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 8px;
+    }
+}

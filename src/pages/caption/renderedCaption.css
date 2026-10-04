@@ -1,0 +1,8 @@
+.preview > svg text:hover {
+    user-select: none;
+
+    &:hover {
+        fill: yellow;
+        cursor: move;
+    }
+}

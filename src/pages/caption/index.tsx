@@ -59,7 +59,7 @@ function captionTemplate() {
             <article className="caption-area">
                 <div className="preview">
                     <img src={template.imageUrl} alt="Template" />
-                    <svg>
+                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
                         {captions?.captionIds.map(id => <RenderedCaption key={id} caption={captions.captions[id]} />)}
                     </svg>
                 </div>

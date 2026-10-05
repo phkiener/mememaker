@@ -15,8 +15,25 @@ type RenderedCaptionProps = {
 function renderedCaption(props: RenderedCaptionProps) {
     return (
         <>
-            <svg x={props.caption.top} y={props.caption.left} height={props.caption.bottom - props.caption.top} width={props.caption.right - props.caption.left}>
-                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="8">{props.caption.text}</text>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" className="caption"
+                 x={props.caption.left} width={props.caption.right - props.caption.left}
+                 y={props.caption.top} height={props.caption.bottom - props.caption.top}>
+
+                <rect className="outline" x="0%" y="0%" height="100%" width="100%" />
+
+                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white">{props.caption.text}</text>
+
+                <rect className="handle resize top-left" />
+                <rect className="handle resize top" />
+                <rect className="handle resize top-right" />
+
+                <rect className="handle resize left" />
+                <rect className="handle resize right" />
+
+                <rect className="handle resize bottom-left" />
+                <rect className="handle resize bottom" />
+                <rect className="handle resize bottom-right" />
+
             </svg>
         </>
     );

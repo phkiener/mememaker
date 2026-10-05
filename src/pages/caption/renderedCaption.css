@@ -1,8 +1,42 @@
-.preview > svg text:hover {
+.caption {
     user-select: none;
+    cursor: move;
+}
 
-    &:hover {
-        fill: yellow;
-        cursor: move;
-    }
+.caption > :not(text) {
+    display: none;
+}
+
+.preview:hover .caption > :not(text) {
+    display: unset;
+}
+
+.caption > .outline {
+    fill: none;
+
+    stroke: rgba(0, 0, 0, .5);
+    stroke-width: 1.5px;
+    stroke-dasharray: .75, .5;
+}
+
+.caption > .handle.resize {
+    --handle-size: 1.5px;
+    --offset-none: 0;
+    --offset-half: calc(-0.5 * var(--handle-size));
+    --offset-full: calc(-1 * var(--handle-size));
+
+    fill: rgba(0, 0, 0, .9);
+    width: var(--handle-size);
+    height: var(--handle-size);
+
+    &.top-left     { x:   0%; y:   0%; transform: translate(var(--offset-none), var(--offset-none)); cursor: nwse-resize; }
+    &.top          { x:  50%; y:   0%; transform: translate(var(--offset-half), var(--offset-none)); cursor:   ns-resize; }
+    &.top-right    { x: 100%; y:   0%; transform: translate(var(--offset-full), var(--offset-none)); cursor: nesw-resize; }
+
+    &.left         { x:   0%; y:  50%; transform: translate(var(--offset-none), var(--offset-half)); cursor:   ew-resize; }
+    &.right        { x: 100%; y:  50%; transform: translate(var(--offset-full), var(--offset-half)); cursor:   ew-resize; }
+
+    &.bottom-left  { x:   0%; y: 100%; transform: translate(var(--offset-none), var(--offset-full)); cursor: nesw-resize; }
+    &.bottom       { x:  50%; y: 100%; transform: translate(var(--offset-half), var(--offset-full)); cursor:   ns-resize; }
+    &.bottom-right { x: 100%; y: 100%; transform: translate(var(--offset-full), var(--offset-full)); cursor: nwse-resize; }
 }

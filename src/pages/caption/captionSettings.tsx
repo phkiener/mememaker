@@ -9,7 +9,7 @@ type Caption = {
 
 type CaptionSettingsProps = {
     caption: Caption;
-    onChange: InputEventHandler<HTMLInputElement>,
+    onChange: InputEventHandler<HTMLTextAreaElement>,
 }
 
 function captionSettings(props: CaptionSettingsProps) {
@@ -17,7 +17,7 @@ function captionSettings(props: CaptionSettingsProps) {
         <>
             <label>
                 {props.caption.title}:
-                <input type="text" name={props.caption.id} value={props.caption.text} onInput={props.onChange} />
+                <textarea name={props.caption.id} onInput={props.onChange} value={props.caption.text}></textarea>
             </label>
         </>
     );

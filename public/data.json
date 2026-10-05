@@ -8,19 +8,19 @@
       "texts": [
         {
           "label": "bus",
-          "content": "text",
-          "top": 61.83,
-          "left": 28.15,
-          "bottom": 69.83,
-          "right": 43.15
+          "content": "text\nmultiline",
+          "top": 11.648,
+          "left": 48.012,
+          "right": 94.566,
+          "bottom": 31.390
         },
         {
           "label": "train",
           "content": "text",
-          "top": 31.86,
-          "left": 70.94,
-          "bottom": 39.86,
-          "right": 85.94
+          "top": 58.365,
+          "left": 14.529,
+          "bottom": 89.464,
+          "right": 48.598
         }
       ]
     },

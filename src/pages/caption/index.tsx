@@ -81,7 +81,7 @@ function captionTemplate() {
         </>
     );
 
-    function updateCaptionText(id: string, evt: InputEvent<HTMLInputElement>) {
+    function updateCaptionText(id: string, evt: InputEvent<HTMLTextAreaElement>) {
         setCaptions(captions => {
             if (!captions) {
                 return undefined;

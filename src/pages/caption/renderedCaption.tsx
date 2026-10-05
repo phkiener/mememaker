@@ -15,6 +15,8 @@ type RenderedCaptionProps = {
 }
 
 function renderedCaption(props: RenderedCaptionProps) {
+    const lines = props.caption.text.split('\n');
+
     return (
         <>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" className={`caption ${props.active ? "active" : ""}`} id={props.caption.id}
@@ -23,7 +25,9 @@ function renderedCaption(props: RenderedCaptionProps) {
 
                 <rect className="outline" x="0%" y="0%" height="100%" width="100%" />
 
-                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white">{props.caption.text}</text>
+                <text x="50%" y="50%" textAnchor="middle" dominantBaseline={lines.length > 1 ? "text-after-edge" : "middle"} fontSize="8" stroke="black" strokeWidth=".25px" fill="white">
+                    {lines.map((line, index) => <tspan key={index} x="50%" dy={`${index}em`}>{line}</tspan>)}
+                </text>
 
                 <rect className="handle resize top-left" data-anchor="nw" />
                 <rect className="handle resize top" data-anchor="n" />

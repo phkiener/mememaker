@@ -118,6 +118,7 @@ function captionTemplate() {
             const targetWidth = movedElement.closest(".caption-container")!.clientWidth;
             const targetHeight = movedElement.closest(".caption-container")!.clientHeight;
 
+            // TODO: Respect aspect ratio here
             const relativeMovementX = evt.movementX / targetWidth * 100;
             const relativeMovementY = evt.movementY / targetHeight * 100;
 

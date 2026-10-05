@@ -25,10 +25,8 @@ function renderedCaption(props: RenderedCaptionProps) {
 
                 <rect className="outline" x="0%" y="0%" height="100%" width="100%" />
 
-                {/* text-top exists, trust me bro.
-                 // @ts-ignore */}
-                <text textAnchor="middle" dominantBaseline="text-top" fontSize="8" stroke="black" strokeWidth=".25px" fill="white">
-                    {lines.map((line, index) => <tspan key={index} x="50%" y={!index ? `50%` : undefined} dy={index ? "1em" : lines.length * -0.5 + "em"}>{line}</tspan>)}
+                <text textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white" fontFamily="impact">
+                    {lines.map((line, index) => <tspan key={index} x="50%" y={!index ? `50%` : undefined} dy={index ? "1em" : (lines.length - 1) * -0.5 + "em"}>{line}</tspan>)}
                 </text>
 
                 <rect className="handle resize top-left" data-anchor="nw" />

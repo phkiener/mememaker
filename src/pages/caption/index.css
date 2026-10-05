@@ -4,27 +4,35 @@
     justify-content: center;
     align-items: stretch;
     gap: 36px;
+    width: 100ch;
+    height: 80vh;
+
+    anchor-scope: all;
 
     > .preview {
-        flex: 0 1 50%;
+        flex: 1 1 50%;
+        position: relative;
 
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: 1fr;
+        > img {
+            anchor-name: --template;
 
-        > svg, > img {
-            grid-row: 1 / -1;
-            grid-column: 1 / -1;
-
-            width: 100%;
-            height: 100%;
-
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
+        }
+
+        > svg {
+            position: absolute;
+            position-anchor: --template;
+            position-area: span-all;
+
+            width: anchor-size();
+            height: anchor-size();
         }
     }
 
     > .controls {
-        flex: 1 1 50%;
+        flex: 1 1 auto;
 
         display: flex;
         flex-direction: column;

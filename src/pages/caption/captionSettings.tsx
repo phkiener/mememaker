@@ -15,10 +15,10 @@ type CaptionSettingsProps = {
 function captionSettings(props: CaptionSettingsProps) {
     return (
         <>
-            <label>
-                {props.caption.title}:
+            <div className="caption-control">
+                <span>{props.caption.title}</span>
                 <textarea name={props.caption.id} onInput={props.onChange} value={props.caption.text}></textarea>
-            </label>
+            </div>
         </>
     );
 }

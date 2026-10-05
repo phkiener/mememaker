@@ -65,7 +65,7 @@ function captionTemplate() {
             <article className="caption-area">
                 <div className="preview">
                     <img src={template.imageUrl} alt="Template" />
-                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" className="caption-container"
                          onMouseDown={holdCaption}
                          onMouseMove={handleMovement}
                          onMouseUp={releaseCaption}
@@ -115,8 +115,8 @@ function captionTemplate() {
             }
 
             const movedElement = evt.target as Element;
-            const targetWidth = movedElement.closest(".preview")!.clientWidth;
-            const targetHeight = movedElement.closest(".preview")!.clientHeight;
+            const targetWidth = movedElement.closest(".caption-container")!.clientWidth;
+            const targetHeight = movedElement.closest(".caption-container")!.clientHeight;
 
             const relativeMovementX = evt.movementX / targetWidth * 100;
             const relativeMovementY = evt.movementY / targetHeight * 100;

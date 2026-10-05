@@ -114,13 +114,16 @@ function captionTemplate() {
                 return captions;
             }
 
+            if (evt.movementX === 0 && evt.movementY === 0) {
+                return captions;
+            }
+
             const movedElement = evt.target as Element;
             const targetWidth = movedElement.closest(".caption-container")!.clientWidth;
             const targetHeight = movedElement.closest(".caption-container")!.clientHeight;
 
-            // TODO: Respect aspect ratio here
-            const relativeMovementX = evt.movementX / targetWidth * 100;
-            const relativeMovementY = evt.movementY / targetHeight * 100;
+            const relativeMovementX = evt.movementX / targetWidth * 100 * (targetWidth > targetHeight ? targetWidth / targetHeight : 1);
+            const relativeMovementY = evt.movementY / targetHeight * 100 * (targetHeight > targetWidth ? targetHeight / targetWidth : 1);
 
            const activeCaption = captions.captions[captions.activeCaption];
            const moveTop = captions.anchor === null || captions.anchor === "nw" || captions.anchor === "n" || captions.anchor === "ne";

@@ -33,26 +33,26 @@
         {
           "label": "lifted-child",
           "content": "text",
-          "top": 20.75,
-          "left": 34.14,
-          "bottom": 28.75,
-          "right": 39.14
+          "top": 8.456,
+          "left": 39.134,
+          "bottom": 20.871,
+          "right": 64.452
         },
         {
           "label": "drowning-child",
           "content": "text",
-          "top": 51.35,
-          "left": 14.72,
-          "bottom": 59.35,
-          "right": 29.72
+          "top": 36.3716,
+          "left": 11.996,
+          "bottom": 50.779,
+          "right": 37.098
         },
         {
           "label": "skeleton",
           "content": "text",
-          "top": 56.29,
-          "left": 67.95,
-          "bottom": 64.29,
-          "right": 82.95
+          "top": 84.169,
+          "left": 43.886,
+          "bottom": 98.662,
+          "right": 67.286
         }
       ]
     }

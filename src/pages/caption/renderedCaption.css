@@ -12,9 +12,9 @@
 }
 
 .caption > .outline {
-    fill: none;
-
+    fill: rgba(0, 0, 0, 0);
     stroke: rgba(0, 0, 0, .5);
+
     stroke-width: 1.5px;
     stroke-dasharray: .75, .5;
 }

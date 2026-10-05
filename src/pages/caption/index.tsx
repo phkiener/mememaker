@@ -7,8 +7,10 @@ import './index.css'
 
 type RenderableCaption = {
     text: string;
-    x: number;
-    y: number;
+    top: number;
+    left: number;
+    bottom: number;
+    right: number;
 }
 
 type ConfigurableCaption = {
@@ -44,8 +46,10 @@ function captionTemplate() {
                         id: caption.label,
                         title: caption.label,
                         text: caption.content,
-                        x: caption.x,
-                        y: caption.y };
+                        top: caption.top,
+                        left: caption.left,
+                        bottom: caption.bottom,
+                        right: caption.right };
                 }
 
                 setCaptions(captionState);

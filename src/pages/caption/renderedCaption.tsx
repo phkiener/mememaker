@@ -2,10 +2,10 @@ import './renderedCaption.css';
 
 type Caption = {
     text: string;
-    x: number;
-    y: number;
-
-    // TODO: Probably gonna switch to "top", "left", "bottom", "right" for this. Makes sizing easier. Text will just.. have to clip, I guess.
+    top: number;
+    left: number;
+    bottom: number;
+    right: number;
 }
 
 type RenderedCaptionProps = {
@@ -15,9 +15,9 @@ type RenderedCaptionProps = {
 function renderedCaption(props: RenderedCaptionProps) {
     return (
         <>
-            <g>
-                <text x={props.caption.x * 100} y={props.caption.y * 100}>{props.caption.text}</text>
-            </g>
+            <svg x={props.caption.top} y={props.caption.left} height={props.caption.bottom - props.caption.top} width={props.caption.right - props.caption.left}>
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="8">{props.caption.text}</text>
+            </svg>
         </>
     );
 }

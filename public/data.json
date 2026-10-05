@@ -9,14 +9,18 @@
         {
           "label": "bus",
           "content": "text",
-          "x": "0.6183",
-          "y": "0.2815"
+          "top": 61.83,
+          "left": 28.15,
+          "bottom": 69.83,
+          "right": 43.15
         },
         {
           "label": "train",
           "content": "text",
-          "x": "0.3186",
-          "y": "0.7094"
+          "top": 31.86,
+          "left": 70.94,
+          "bottom": 39.86,
+          "right": 85.94
         }
       ]
     },
@@ -29,20 +33,26 @@
         {
           "label": "lifted-child",
           "content": "text",
-          "x": "0.2075",
-          "y": "0.3414"
+          "top": 20.75,
+          "left": 34.14,
+          "bottom": 28.75,
+          "right": 39.14
         },
         {
           "label": "drowning-child",
           "content": "text",
-          "x": "0.5135",
-          "y": "0.1472"
+          "top": 51.35,
+          "left": 14.72,
+          "bottom": 59.35,
+          "right": 29.72
         },
         {
           "label": "skeleton",
           "content": "text",
-          "x": "0.5629",
-          "y": "0.6795"
+          "top": 56.29,
+          "left": 67.95,
+          "bottom": 64.29,
+          "right": 82.95
         }
       ]
     }

@@ -1,6 +1,7 @@
 import './renderedCaption.css';
 
 type Caption = {
+    id: string;
     text: string;
     top: number;
     left: number;
@@ -10,12 +11,13 @@ type Caption = {
 
 type RenderedCaptionProps = {
     caption: Caption;
+    active: boolean;
 }
 
 function renderedCaption(props: RenderedCaptionProps) {
     return (
         <>
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" className="caption"
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" className={`caption ${props.active ? "active" : ""}`} id={props.caption.id}
                  x={props.caption.left} width={props.caption.right - props.caption.left}
                  y={props.caption.top} height={props.caption.bottom - props.caption.top}>
 

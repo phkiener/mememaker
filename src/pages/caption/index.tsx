@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useEffect, useState, type InputEvent } from "react";
+import { useEffect, useState, type InputEvent, type MouseEvent } from "react";
 import { fetchTemplate } from "../../templates";
 import CaptionSettings from "./captionSettings.tsx";
 import RenderedCaption from "./renderedCaption.tsx";
@@ -24,6 +24,7 @@ type CaptionState = RenderableCaption & ConfigurableCaption;
 type CaptionStateMap = {
     captionIds: string[];
     captions: { [id: string]: CaptionState };
+    activeCaption: string | null;
 }
 
 type TemplateState = { title: string | undefined, imageUrl: string | undefined }
@@ -40,7 +41,7 @@ function captionTemplate() {
                 const templateState: TemplateState = { title: template!.title, imageUrl: template!.image };
                 setTemplate(templateState);
 
-                const captionState: CaptionStateMap = { captionIds: template!.texts.map(t => t.label), captions: {} };
+                const captionState: CaptionStateMap = { captionIds: template!.texts.map(t => t.label), captions: {}, activeCaption: null };
                 for (const caption of template!.texts) {
                     captionState.captions[caption.label] = {
                         id: caption.label,
@@ -63,8 +64,12 @@ function captionTemplate() {
             <article className="caption-area">
                 <div className="preview">
                     <img src={template.imageUrl} alt="Template" />
-                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        {captions?.captionIds.map(id => <RenderedCaption key={id} caption={captions.captions[id]} />)}
+                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                         onMouseDown={holdCaption}
+                         onMouseMove={handleMovement}
+                         onMouseUp={releaseCaption}
+                         onMouseLeave={releaseCaption}>
+                        {captions?.captionIds.map(id => <RenderedCaption key={id} caption={captions.captions[id]} active={captions.activeCaption === id} />)}
                     </svg>
                 </div>
 
@@ -86,6 +91,56 @@ function captionTemplate() {
 
             return { ...captions, captions: { ...captions.captions, [id]: { ...currentCaption, text: updatedText }}};
         });
+    }
+
+    function holdCaption(evt: MouseEvent) {
+        setCaptions(captions => {
+            if (!captions) {
+                return captions;
+            }
+
+            const caption = (evt.target as Element).closest(".caption");
+            return { ...captions, activeCaption: caption?.id ?? null };
+        })
+    }
+
+    function handleMovement(evt: MouseEvent) {
+        setCaptions(captions => {
+            if (!captions || !captions.activeCaption) {
+                return captions;
+            }
+
+            const targetWidth = (evt.target as Element).closest(".preview")!.clientWidth;
+            const targetHeight = (evt.target as Element).closest(".preview")!.clientHeight;
+
+            const relativeMovementX = evt.movementX / targetWidth * 100;
+            const relativeMovementY = evt.movementY / targetHeight * 100;
+
+           const activeCaption = captions.captions[captions.activeCaption];
+           return {
+               ...captions,
+               captions: {
+                   ...captions.captions,
+                   [activeCaption.id]: {
+                       ...activeCaption,
+                       top: activeCaption.top + relativeMovementY,
+                       left: activeCaption.left + relativeMovementX,
+                       bottom: activeCaption.bottom + relativeMovementY,
+                       right: activeCaption.right + relativeMovementX,
+                   }
+               }
+           };
+        });
+    }
+
+    function releaseCaption() {
+        setCaptions(captions => {
+            if (!captions) {
+                return captions;
+            }
+
+            return { ...captions, activeCaption: null}
+        })
     }
 }
 

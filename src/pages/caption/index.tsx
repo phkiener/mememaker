@@ -25,6 +25,7 @@ type CaptionStateMap = {
     captionIds: string[];
     captions: { [id: string]: CaptionState };
     activeCaption: string | null;
+    anchor: string | null;
 }
 
 type TemplateState = { title: string | undefined, imageUrl: string | undefined }
@@ -41,7 +42,7 @@ function captionTemplate() {
                 const templateState: TemplateState = { title: template!.title, imageUrl: template!.image };
                 setTemplate(templateState);
 
-                const captionState: CaptionStateMap = { captionIds: template!.texts.map(t => t.label), captions: {}, activeCaption: null };
+                const captionState: CaptionStateMap = { captionIds: template!.texts.map(t => t.label), captions: {}, activeCaption: null, anchor: null };
                 for (const caption of template!.texts) {
                     captionState.captions[caption.label] = {
                         id: caption.label,
@@ -99,8 +100,11 @@ function captionTemplate() {
                 return captions;
             }
 
-            const caption = (evt.target as Element).closest(".caption");
-            return { ...captions, activeCaption: caption?.id ?? null };
+            const heldElement = evt.target as Element;
+            const caption = heldElement.closest(".caption");
+            const anchor = heldElement.getAttribute("data-anchor");
+
+            return { ...captions, activeCaption: caption?.id ?? null, anchor: anchor ?? null };
         })
     }
 
@@ -110,23 +114,29 @@ function captionTemplate() {
                 return captions;
             }
 
-            const targetWidth = (evt.target as Element).closest(".preview")!.clientWidth;
-            const targetHeight = (evt.target as Element).closest(".preview")!.clientHeight;
+            const movedElement = evt.target as Element;
+            const targetWidth = movedElement.closest(".preview")!.clientWidth;
+            const targetHeight = movedElement.closest(".preview")!.clientHeight;
 
             const relativeMovementX = evt.movementX / targetWidth * 100;
             const relativeMovementY = evt.movementY / targetHeight * 100;
 
            const activeCaption = captions.captions[captions.activeCaption];
+           const moveTop = captions.anchor === null || captions.anchor === "nw" || captions.anchor === "n" || captions.anchor === "ne";
+           const moveLeft = captions.anchor === null || captions.anchor === "nw" || captions.anchor === "w" || captions.anchor === "sw";
+           const moveBottom = captions.anchor === null || captions.anchor === "sw" || captions.anchor === "s" || captions.anchor === "se";
+           const moveRight = captions.anchor === null || captions.anchor === "ne" || captions.anchor === "e" || captions.anchor === "se";
+
            return {
                ...captions,
                captions: {
                    ...captions.captions,
                    [activeCaption.id]: {
                        ...activeCaption,
-                       top: activeCaption.top + relativeMovementY,
-                       left: activeCaption.left + relativeMovementX,
-                       bottom: activeCaption.bottom + relativeMovementY,
-                       right: activeCaption.right + relativeMovementX,
+                       top: moveTop ? activeCaption.top + relativeMovementY : activeCaption.top,
+                       left: moveLeft ? activeCaption.left + relativeMovementX : activeCaption.left,
+                       bottom: moveBottom ? activeCaption.bottom + relativeMovementY : activeCaption.bottom,
+                       right: moveRight ? activeCaption.right + relativeMovementX : activeCaption.right,
                    }
                }
            };
@@ -139,7 +149,7 @@ function captionTemplate() {
                 return captions;
             }
 
-            return { ...captions, activeCaption: null}
+            return { ...captions, activeCaption: null, anchor: null };
         })
     }
 }

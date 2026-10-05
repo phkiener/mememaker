@@ -25,17 +25,16 @@ function renderedCaption(props: RenderedCaptionProps) {
 
                 <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white">{props.caption.text}</text>
 
-                <rect className="handle resize top-left" />
-                <rect className="handle resize top" />
-                <rect className="handle resize top-right" />
+                <rect className="handle resize top-left" data-anchor="nw" />
+                <rect className="handle resize top" data-anchor="n" />
+                <rect className="handle resize top-right" data-anchor="ne" />
 
-                <rect className="handle resize left" />
-                <rect className="handle resize right" />
+                <rect className="handle resize left" data-anchor="w" />
+                <rect className="handle resize right" data-anchor="e" />
 
-                <rect className="handle resize bottom-left" />
-                <rect className="handle resize bottom" />
-                <rect className="handle resize bottom-right" />
-
+                <rect className="handle resize bottom-left" data-anchor="sw" />
+                <rect className="handle resize bottom" data-anchor="s" />
+                <rect className="handle resize bottom-right" data-anchor="se" />
             </svg>
         </>
     );

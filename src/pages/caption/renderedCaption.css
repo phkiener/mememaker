@@ -29,14 +29,14 @@
     width: var(--handle-size);
     height: var(--handle-size);
 
-    &.top-left     { x:   0%; y:   0%; transform: translate(var(--offset-none), var(--offset-none)); cursor: nwse-resize; }
-    &.top          { x:  50%; y:   0%; transform: translate(var(--offset-half), var(--offset-none)); cursor:   ns-resize; }
-    &.top-right    { x: 100%; y:   0%; transform: translate(var(--offset-full), var(--offset-none)); cursor: nesw-resize; }
+    &[data-anchor=nw] { x:   0%; y:   0%; transform: translate(var(--offset-none), var(--offset-none)); cursor: nwse-resize; }
+    &[data-anchor=n]  { x:  50%; y:   0%; transform: translate(var(--offset-half), var(--offset-none)); cursor:   ns-resize; }
+    &[data-anchor=ne] { x: 100%; y:   0%; transform: translate(var(--offset-full), var(--offset-none)); cursor: nesw-resize; }
 
-    &.left         { x:   0%; y:  50%; transform: translate(var(--offset-none), var(--offset-half)); cursor:   ew-resize; }
-    &.right        { x: 100%; y:  50%; transform: translate(var(--offset-full), var(--offset-half)); cursor:   ew-resize; }
+    &[data-anchor=w]  { x:   0%; y:  50%; transform: translate(var(--offset-none), var(--offset-half)); cursor:   ew-resize; }
+    &[data-anchor=e]  { x: 100%; y:  50%; transform: translate(var(--offset-full), var(--offset-half)); cursor:   ew-resize; }
 
-    &.bottom-left  { x:   0%; y: 100%; transform: translate(var(--offset-none), var(--offset-full)); cursor: nesw-resize; }
-    &.bottom       { x:  50%; y: 100%; transform: translate(var(--offset-half), var(--offset-full)); cursor:   ns-resize; }
-    &.bottom-right { x: 100%; y: 100%; transform: translate(var(--offset-full), var(--offset-full)); cursor: nwse-resize; }
+    &[data-anchor=sw] { x:   0%; y: 100%; transform: translate(var(--offset-none), var(--offset-full)); cursor: nesw-resize; }
+    &[data-anchor=s]  { x:  50%; y: 100%; transform: translate(var(--offset-half), var(--offset-full)); cursor:   ns-resize; }
+    &[data-anchor=se] { x: 100%; y: 100%; transform: translate(var(--offset-full), var(--offset-full)); cursor: nwse-resize; }
 }

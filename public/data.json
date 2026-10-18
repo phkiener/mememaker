@@ -12,7 +12,8 @@
           "top": 11.648,
           "left": 48.012,
           "right": 94.566,
-          "bottom": 31.390
+          "bottom": 31.390,
+          "angle": 0
         },
         {
           "label": "train",
@@ -20,7 +21,8 @@
           "top": 58.365,
           "left": 14.529,
           "bottom": 89.464,
-          "right": 48.598
+          "right": 48.598,
+          "angle": 0
         }
       ]
     },
@@ -36,7 +38,8 @@
           "top": 8.456,
           "left": 39.134,
           "bottom": 20.871,
-          "right": 64.452
+          "right": 64.452,
+          "angle": 0
         },
         {
           "label": "drowning-child",
@@ -44,7 +47,8 @@
           "top": 36.3716,
           "left": 11.996,
           "bottom": 50.779,
-          "right": 37.098
+          "right": 37.098,
+          "angle": 0
         },
         {
           "label": "skeleton",
@@ -52,7 +56,8 @@
           "top": 84.169,
           "left": 43.886,
           "bottom": 98.662,
-          "right": 67.286
+          "right": 67.286,
+          "angle": 0
         }
       ]
     }

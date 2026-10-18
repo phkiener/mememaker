@@ -14,4 +14,5 @@ export type TemplateLabel = {
     left: number;
     bottom: number;
     right: number;
+    angle: number;
 }

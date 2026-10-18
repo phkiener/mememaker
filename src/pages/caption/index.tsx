@@ -11,6 +11,7 @@ type RenderableCaption = {
     left: number;
     bottom: number;
     right: number;
+    angle: number;
 }
 
 type ConfigurableCaption = {
@@ -25,7 +26,9 @@ type CaptionStateMap = {
     captionIds: string[];
     captions: { [id: string]: CaptionState };
     activeCaption: string | null;
+
     anchor: string | null;
+    movement: "rotate" | "resize" | "move" | null;
 }
 
 type TemplateState = { title: string | undefined, imageUrl: string | undefined }
@@ -42,7 +45,7 @@ function captionTemplate() {
                 const templateState: TemplateState = { title: template!.title, imageUrl: template!.image };
                 setTemplate(templateState);
 
-                const captionState: CaptionStateMap = { captionIds: template!.texts.map(t => t.label), captions: {}, activeCaption: null, anchor: null };
+                const captionState: CaptionStateMap = { captionIds: template!.texts.map(t => t.label), captions: {}, activeCaption: null, anchor: null, movement: null };
                 for (const caption of template!.texts) {
                     captionState.captions[caption.label] = {
                         id: caption.label,
@@ -51,7 +54,8 @@ function captionTemplate() {
                         top: caption.top,
                         left: caption.left,
                         bottom: caption.bottom,
-                        right: caption.right };
+                        right: caption.right,
+                        angle: caption.angle };
                 }
 
                 setCaptions(captionState);
@@ -103,8 +107,13 @@ function captionTemplate() {
             const heldElement = evt.target as Element;
             const caption = heldElement.closest(".caption");
             const anchor = heldElement.getAttribute("data-anchor");
+            const kind = heldElement.classList.contains("resize")
+                ? "resize"
+                : heldElement.classList.contains("rotate")
+                    ? "rotate"
+                    : "move";
 
-            return { ...captions, activeCaption: caption?.id ?? null, anchor: anchor ?? null };
+            return { ...captions, activeCaption: caption?.id ?? null, anchor: anchor ?? null, movement: kind };
         })
     }
 
@@ -119,31 +128,90 @@ function captionTemplate() {
             }
 
             const movedElement = evt.target as Element;
+            const activeCaption = captions.captions[captions.activeCaption];
             const targetWidth = movedElement.closest(".caption-container")!.clientWidth;
             const targetHeight = movedElement.closest(".caption-container")!.clientHeight;
 
             const relativeMovementX = evt.movementX / targetWidth * 100 * (targetWidth > targetHeight ? targetWidth / targetHeight : 1);
             const relativeMovementY = evt.movementY / targetHeight * 100 * (targetHeight > targetWidth ? targetHeight / targetWidth : 1);
 
-           const activeCaption = captions.captions[captions.activeCaption];
-           const moveTop = captions.anchor === null || captions.anchor === "nw" || captions.anchor === "n" || captions.anchor === "ne";
-           const moveLeft = captions.anchor === null || captions.anchor === "nw" || captions.anchor === "w" || captions.anchor === "sw";
-           const moveBottom = captions.anchor === null || captions.anchor === "sw" || captions.anchor === "s" || captions.anchor === "se";
-           const moveRight = captions.anchor === null || captions.anchor === "ne" || captions.anchor === "e" || captions.anchor === "se";
+            if (captions.movement === "move") {
+                return {
+                    ...captions,
+                    captions: {
+                        ...captions.captions,
+                        [activeCaption.id]: {
+                            ...activeCaption,
+                            top: activeCaption.top + relativeMovementY,
+                            left: activeCaption.left + relativeMovementX,
+                            bottom: activeCaption.bottom + relativeMovementY,
+                            right: activeCaption.right + relativeMovementX,
+                        }
+                    }
+                };
+            }
 
-           return {
-               ...captions,
-               captions: {
-                   ...captions.captions,
-                   [activeCaption.id]: {
-                       ...activeCaption,
-                       top: moveTop ? activeCaption.top + relativeMovementY : activeCaption.top,
-                       left: moveLeft ? activeCaption.left + relativeMovementX : activeCaption.left,
-                       bottom: moveBottom ? activeCaption.bottom + relativeMovementY : activeCaption.bottom,
-                       right: moveRight ? activeCaption.right + relativeMovementX : activeCaption.right,
-                   }
-               }
-           };
+            if (captions.movement === "resize" && captions.anchor !== null) {
+                const moveTop =  captions.anchor === "nw" || captions.anchor === "n" || captions.anchor === "ne";
+                const moveLeft = captions.anchor === "nw" || captions.anchor === "w" || captions.anchor === "sw";
+                const moveBottom = captions.anchor === "sw" || captions.anchor === "s" || captions.anchor === "se";
+                const moveRight = captions.anchor === "ne" || captions.anchor === "e" || captions.anchor === "se";
+
+                return {
+                    ...captions,
+                    captions: {
+                        ...captions.captions,
+                        [activeCaption.id]: {
+                            ...activeCaption,
+                            top: moveTop ? activeCaption.top + relativeMovementY : activeCaption.top,
+                            left: moveLeft ? activeCaption.left + relativeMovementX : activeCaption.left,
+                            bottom: moveBottom ? activeCaption.bottom + relativeMovementY : activeCaption.bottom,
+                            right: moveRight ? activeCaption.right + relativeMovementX : activeCaption.right,
+                        }
+                    }
+                };
+            }
+
+            if (captions.movement === "rotate" && captions.anchor !== null) {
+                let dx = relativeMovementX;
+                let dy = relativeMovementY;
+
+                switch (captions.anchor) {
+                    case "n":
+                        dx = relativeMovementX;
+                        dy = relativeMovementY;
+                        break;
+
+                    case "e":
+                        dx = relativeMovementY;
+                        dy = relativeMovementX;
+                        break;
+
+                    case "s":
+                        dx = relativeMovementX * -1;
+                        dy = relativeMovementY * -1;
+                        break;
+
+                    case "w":
+                        dx = relativeMovementY * -1;
+                        dy = relativeMovementX * -1;
+                        break;
+                }
+
+                const rotation = Math.atan2(dx, dy);
+                return {
+                    ...captions,
+                    captions: {
+                        ...captions.captions,
+                        [activeCaption.id]: {
+                            ...activeCaption,
+                            angle: activeCaption.angle + rotation
+                        }
+                    }
+                };
+            }
+
+            return captions;
         });
     }
 
@@ -153,7 +221,7 @@ function captionTemplate() {
                 return captions;
             }
 
-            return { ...captions, activeCaption: null, anchor: null };
+            return { ...captions, activeCaption: null, anchor: null, movement: null };
         })
     }
 }

@@ -40,3 +40,22 @@
     &[data-anchor=s]  { x:  50%; y: 100%; transform: translate(var(--offset-half), var(--offset-full)); cursor:   ns-resize; }
     &[data-anchor=se] { x: 100%; y: 100%; transform: translate(var(--offset-full), var(--offset-full)); cursor: nwse-resize; }
 }
+
+.caption > .handle.rotate {
+    --handle-size: 1.5px;
+
+    fill: rgba(0, 0, 0, .9);
+    r: var(--handle-size);
+    cursor: grabbing;
+
+    &[data-anchor=nw] { cx:   0%; cy:   0%; }
+    &[data-anchor=n]  { cx:  50%; cy:   0%; }
+    &[data-anchor=ne] { cx: 100%; cy:   0%; }
+
+    &[data-anchor=w]  { cx:   0%; cy:  50%; }
+    &[data-anchor=e]  { cx: 100%; cy:  50%; }
+
+    &[data-anchor=sw] { cx:   0%; cy: 100%; }
+    &[data-anchor=s]  { cx:  50%; cy: 100%; }
+    &[data-anchor=se] { cx: 100%; cy: 100%; }
+}

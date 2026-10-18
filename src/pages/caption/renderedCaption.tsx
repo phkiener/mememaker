@@ -7,6 +7,7 @@ type Caption = {
     left: number;
     bottom: number;
     right: number;
+    angle: number;
 }
 
 type RenderedCaptionProps = {
@@ -25,20 +26,20 @@ function renderedCaption(props: RenderedCaptionProps) {
 
                 <rect className="outline" x="0%" y="0%" height="100%" width="100%" />
 
-                <text textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white" fontFamily="impact">
+                <text textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white" fontFamily="impact"
+                      transform={`rotate(${props.caption.angle})`} transformOrigin="center">
                     {lines.map((line, index) => <tspan key={index} x="50%" y={!index ? `50%` : undefined} dy={index ? "1em" : (lines.length - 1) * -0.5 + "em"}>{line}</tspan>)}
                 </text>
 
                 <rect className="handle resize top-left" data-anchor="nw" />
-                <rect className="handle resize top" data-anchor="n" />
                 <rect className="handle resize top-right" data-anchor="ne" />
-
-                <rect className="handle resize left" data-anchor="w" />
-                <rect className="handle resize right" data-anchor="e" />
-
                 <rect className="handle resize bottom-left" data-anchor="sw" />
-                <rect className="handle resize bottom" data-anchor="s" />
                 <rect className="handle resize bottom-right" data-anchor="se" />
+
+                <circle className="handle rotate top" data-anchor="n" />
+                <circle className="handle rotate left" data-anchor="e" />
+                <circle className="handle rotate bottom" data-anchor="s" />
+                <circle className="handle rotate right" data-anchor="w" />
             </svg>
         </>
     );

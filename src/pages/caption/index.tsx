@@ -89,6 +89,7 @@ function captionTemplate() {
 
             <dialog id="export-dialog" onToggle={renderExport}>
                 <canvas ref={canvasRef} />
+                <span>Image has been copied to clipboard.</span>
                 <button type="button" className="close-export" command="close" commandfor="export-dialog">Close</button>
             </dialog>
         </>
@@ -116,12 +117,22 @@ function captionTemplate() {
         const blob = new Blob([serializedCaptions], { type: "image/svg+xml;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         const throwawayImage = new Image();
-        throwawayImage.onload = () => {
+        throwawayImage.onload = completeExport;
+        throwawayImage.src = url;
+
+        function completeExport() {
+            if (!canvas) {
+                return;
+            }
+
             context.drawImage(throwawayImage, 0, 0, canvas.width, canvas.height);
             URL.revokeObjectURL(url);
-        };
 
-        throwawayImage.src = url;
+            canvas.toBlob(async blob => {
+                const clipboardContent = new ClipboardItem({ [blob!.type]: blob! });
+                await navigator.clipboard.write([clipboardContent]);
+            });
+        }
     }
 
     function updateCaptionText(id: string, evt: InputEvent<HTMLTextAreaElement>) {

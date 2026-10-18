@@ -14,7 +14,7 @@ const rootElement = document.getElementById('app')!;
 createRoot(rootElement).render(
     <StrictMode>
         <Layout>
-            <BrowserRouter>
+            <BrowserRouter basename={`/${import.meta.env.BASE_URL}`}>
                 <Routes>
                     <Route path="/" element={ <List /> } />
                     <Route path="/caption/:id" element={ <Caption /> } />

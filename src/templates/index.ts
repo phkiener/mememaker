@@ -2,10 +2,10 @@ import type { Template } from "./types";
 export type { Template } from "./types";
 
 export async function fetchTemplates(): Promise<Template[]> {
-    const response = await fetch("/data.json");
+    const response = await fetch(`${import.meta.env.BASE_URL}/data.json`);
     const data = await response.json();
 
-    return data.templates as Template[];
+    return (data.templates as Template[]).map(t => { return { ...t, image: `${import.meta.env.BASE_URL}/${t.image}` }});
 }
 
 export async function fetchTemplate(id: string): Promise<Template | null> {

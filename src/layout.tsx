@@ -7,7 +7,7 @@ function Layout(props: LayoutProps) {
     return (
         <>
             <header className="layout-header">
-                <a href="/">mememaker</a>
+                <a href={import.meta.env.BASE_URL}>mememaker</a>
             </header>
 
             <main className="layout-main">

@@ -39,5 +39,29 @@
         justify-content: flex-start;
         align-items: stretch;
         gap: 8px;
+
+        > .show-export {
+            margin-top: 2lh;
+        }
+    }
+}
+
+#export-dialog:open {
+    width: 80dvw;
+    height: 80dvh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    > canvas {
+        max-height: 90%;
+        max-width: 90%;
+    }
+
+    > .close-export {
+        flex: 0 0 max-content;
     }
 }

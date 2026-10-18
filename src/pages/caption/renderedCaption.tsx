@@ -24,7 +24,7 @@ function renderedCaption(props: RenderedCaptionProps) {
                  x={props.caption.left} width={props.caption.right - props.caption.left}
                  y={props.caption.top} height={props.caption.bottom - props.caption.top}>
 
-                <rect className="outline" x="0%" y="0%" height="100%" width="100%" />
+                <rect className="outline" x="0%" y="0%" height="100%" width="100%" fill="none" />
 
                 <text textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white" fontFamily="impact"
                       transform={`rotate(${props.caption.angle})`} transformOrigin="center">

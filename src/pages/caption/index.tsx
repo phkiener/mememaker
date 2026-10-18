@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useEffect, useState, type InputEvent, type MouseEvent } from "react";
+import {useEffect, useState, type InputEvent, type MouseEvent, type ToggleEvent, useRef} from "react";
 import { fetchTemplate } from "../../templates";
 import CaptionSettings from "./captionSettings.tsx";
 import RenderedCaption from "./renderedCaption.tsx";
@@ -38,6 +38,9 @@ function captionTemplate() {
 
     const [template, setTemplate] = useState<TemplateState>({ title: undefined, imageUrl: undefined });
     const [captions, setCaptions] = useState<CaptionStateMap>();
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const imgRef = useRef<HTMLImageElement>(null);
+    const svgRef = useRef<SVGElement>(null);
 
     useEffect(() => {
         fetchTemplate(params.id!)
@@ -68,8 +71,8 @@ function captionTemplate() {
 
             <article className="caption-area">
                 <div className="preview">
-                    <img src={template.imageUrl} alt="Template" />
-                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" className="caption-container"
+                    <img src={template.imageUrl} alt="Template" ref={imgRef} />
+                    <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" className="caption-container" ref={svgRef}
                          onMouseDown={holdCaption}
                          onMouseMove={handleMovement}
                          onMouseUp={releaseCaption}
@@ -80,10 +83,46 @@ function captionTemplate() {
 
                 <div className="controls">
                     {captions?.captionIds.map(id => <CaptionSettings key={id} caption={captions.captions[id]} onChange={x => updateCaptionText(id, x)} />)}
+                    <button type="button" className="show-export" command="show-modal" commandfor="export-dialog">Export</button>
                 </div>
             </article>
+
+            <dialog id="export-dialog" onToggle={renderExport}>
+                <canvas ref={canvasRef} />
+                <button type="button" className="close-export" command="close" commandfor="export-dialog">Close</button>
+            </dialog>
         </>
     );
+
+    function renderExport(evt: ToggleEvent<HTMLDialogElement>) {
+        const canvas = canvasRef.current;
+        const image = imgRef.current;
+        const svg = svgRef.current;
+
+        if (evt.newState !== "open" || !canvas || !image || !svg) {
+            return;
+        }
+
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+
+        const context = canvas.getContext("2d")!;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0);
+
+        const serializer = new XMLSerializer();
+        const serializedCaptions = serializer.serializeToString(svg);
+
+        const blob = new Blob([serializedCaptions], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const throwawayImage = new Image();
+        throwawayImage.onload = () => {
+            context.drawImage(throwawayImage, 0, 0, canvas.width, canvas.height);
+            URL.revokeObjectURL(url);
+        };
+
+        throwawayImage.src = url;
+    }
 
     function updateCaptionText(id: string, evt: InputEvent<HTMLTextAreaElement>) {
         setCaptions(captions => {

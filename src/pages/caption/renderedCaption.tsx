@@ -15,7 +15,7 @@ type RenderedCaptionProps = {
     active: boolean;
 }
 
-function renderedCaption(props: RenderedCaptionProps) {
+function RenderedCaption(props: RenderedCaptionProps) {
     const lines = props.caption.text.split('\n');
 
     return (
@@ -26,8 +26,8 @@ function renderedCaption(props: RenderedCaptionProps) {
 
                 <rect className="outline" x="0%" y="0%" height="100%" width="100%" fill="none" />
 
-                <text textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white" fontFamily="impact"
-                      transform={`rotate(${props.caption.angle})`} transformOrigin="center">
+                {/* @ts-ignore */}
+                <text textAnchor="middle" dominantBaseline="middle" fontSize="8" stroke="black" strokeWidth=".25px" fill="white" fontFamily="impact" transform={`rotate(${props.caption.angle})`} transformOrigin="center">
                     {lines.map((line, index) => <tspan key={index} x="50%" y={!index ? `50%` : undefined} dy={index ? "1em" : (lines.length - 1) * -0.5 + "em"}>{line}</tspan>)}
                 </text>
 
@@ -45,4 +45,4 @@ function renderedCaption(props: RenderedCaptionProps) {
     );
 }
 
-export default renderedCaption;
+export default RenderedCaption;

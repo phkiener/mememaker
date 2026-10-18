@@ -3,7 +3,7 @@ import { fetchTemplates, type Template } from "../../templates";
 import TemplateCard from "./templateCard.tsx";
 import './index.css';
 
-function templateList() {
+function TemplateList() {
     const [templates, setTemplates] = useState<Template[]>([]);
     useEffect(() => { fetchTemplates().then(templates => setTemplates(templates)); }, []);
 
@@ -23,4 +23,4 @@ function templateList() {
     );
 }
 
-export default templateList;
+export default TemplateList;

@@ -7,7 +7,7 @@ type TemplateCardProps = {
     imageUrl: string;
 }
 
-function templateCard(props: TemplateCardProps) {
+function TemplateCard(props: TemplateCardProps) {
     return (
         <>
             <Link to={`/caption/${props.id}`}>
@@ -22,4 +22,4 @@ function templateCard(props: TemplateCardProps) {
     );
 }
 
-export default templateCard;
+export default TemplateCard;

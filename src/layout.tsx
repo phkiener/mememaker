@@ -3,7 +3,7 @@ import './layout.css';
 
 type LayoutProps = { children: ReactNode };
 
-function layout(props: LayoutProps) {
+function Layout(props: LayoutProps) {
     return (
         <>
             <header className="layout-header">
@@ -21,4 +21,4 @@ function layout(props: LayoutProps) {
     );
 }
 
-export default layout;
+export default Layout;

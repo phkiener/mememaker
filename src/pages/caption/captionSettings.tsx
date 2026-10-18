@@ -12,7 +12,7 @@ type CaptionSettingsProps = {
     onChange: InputEventHandler<HTMLTextAreaElement>,
 }
 
-function captionSettings(props: CaptionSettingsProps) {
+function CaptionSettings(props: CaptionSettingsProps) {
     return (
         <>
             <div className="caption-control">
@@ -23,4 +23,4 @@ function captionSettings(props: CaptionSettingsProps) {
     );
 }
 
-export default captionSettings;
+export default CaptionSettings;

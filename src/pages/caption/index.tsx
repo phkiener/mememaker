@@ -33,14 +33,14 @@ type CaptionStateMap = {
 
 type TemplateState = { title: string | undefined, imageUrl: string | undefined }
 
-function captionTemplate() {
+function CaptionTemplate() {
     const params = useParams();
 
     const [template, setTemplate] = useState<TemplateState>({ title: undefined, imageUrl: undefined });
     const [captions, setCaptions] = useState<CaptionStateMap>();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const imgRef = useRef<HTMLImageElement>(null);
-    const svgRef = useRef<SVGElement>(null);
+    const svgRef = useRef<SVGSVGElement>(null);
 
     useEffect(() => {
         fetchTemplate(params.id!)
@@ -63,7 +63,7 @@ function captionTemplate() {
 
                 setCaptions(captionState);
             });
-        }, []);
+        }, [params!.id]);
 
     return (
         <>
@@ -83,6 +83,7 @@ function captionTemplate() {
 
                 <div className="controls">
                     {captions?.captionIds.map(id => <CaptionSettings key={id} caption={captions.captions[id]} onChange={x => updateCaptionText(id, x)} />)}
+                    {/* @ts-ignore */}
                     <button type="button" className="show-export" command="show-modal" commandfor="export-dialog">Export</button>
                 </div>
             </article>
@@ -90,6 +91,8 @@ function captionTemplate() {
             <dialog id="export-dialog" onToggle={renderExport}>
                 <canvas ref={canvasRef} />
                 <span>Image has been copied to clipboard.</span>
+
+                {/* @ts-ignore */}
                 <button type="button" className="close-export" command="close" commandfor="export-dialog">Close</button>
             </dialog>
         </>
@@ -276,4 +279,4 @@ function captionTemplate() {
     }
 }
 
-export default captionTemplate;
+export default CaptionTemplate;

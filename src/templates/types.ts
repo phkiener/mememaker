@@ -2,7 +2,6 @@ export type Template = {
     id: string;
     title: string;
     image: string;
-    tags: string[];
     texts: TemplateLabel[]
 }
 

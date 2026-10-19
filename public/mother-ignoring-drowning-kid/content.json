@@ -1,0 +1,34 @@
+{
+  "id": "mother-ignoring-drowning-kid",
+  "title": "Mother Ignoring Kid Drowning in Pool",
+  "image": "/mother-ignoring-drowning-kid/template.jpg",
+  "texts": [
+    {
+      "label": "lifted-child",
+      "content": "text",
+      "top": 8.456,
+      "left": 39.134,
+      "bottom": 20.871,
+      "right": 64.452,
+      "angle": 0
+    },
+    {
+      "label": "drowning-child",
+      "content": "text",
+      "top": 36.3716,
+      "left": 11.996,
+      "bottom": 50.779,
+      "right": 37.098,
+      "angle": 0
+    },
+    {
+      "label": "skeleton",
+      "content": "text",
+      "top": 84.169,
+      "left": 43.886,
+      "bottom": 98.662,
+      "right": 67.286,
+      "angle": 0
+    }
+  ]
+}

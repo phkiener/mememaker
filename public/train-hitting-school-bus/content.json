@@ -1,0 +1,25 @@
+{
+  "id": "train-hitting-school-bus",
+  "title": "Train Hitting School Bus",
+  "image": "/train-hitting-school-bus/template.png",
+  "texts": [
+    {
+      "label": "bus",
+      "content": "text\nmultiline",
+      "top": 11.648,
+      "left": 48.012,
+      "right": 94.566,
+      "bottom": 31.390,
+      "angle": 0
+    },
+    {
+      "label": "train",
+      "content": "text",
+      "top": 58.365,
+      "left": 14.529,
+      "bottom": 89.464,
+      "right": 48.598,
+      "angle": 0
+    }
+  ]
+}
